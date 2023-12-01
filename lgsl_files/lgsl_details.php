@@ -242,6 +242,8 @@
   $output .= "<div style='text-align:center; font-family:tahoma; font-size:9px; padding: 33px 0px 11px 0px;'><a href='https://github.com/tltneon/lgsl' style='text-decoration:none'>".lgsl_version()."</a></div>";
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+/* managed by e107
 if ($lgsl_config['preloader']) {
   echo $output;
 }
+*/
