@@ -14,8 +14,8 @@
 		<link url="{e_PLUGIN}lgsl/index.php" perm='everyone' sef='index'>LGSL</link>
 	</siteLinks>    
 	<adminLinks>
-		<link url="admin_config.php" description="" icon="lgsl_files/other/icon_lgsl_32x32.png" iconSmall="lgsl_files/other/icon_lgsl_16x16.png" 
-        icon128="lgsl_files/other/icon_lgsl_32x32.png" primary="true" >LAN_CONFIGURE</link>
+		<link url="admin_config.php" description="" icon="images/icon_lgsl_32x32.png" iconSmall="images/icon_lgsl_16x16.png" 
+        icon128="images/icon_lgsl_32x32.png" primary="true" >LAN_CONFIGURE</link>
 	</adminLinks>
 	<pluginPrefs>
 	</pluginPrefs>
