@@ -15,7 +15,7 @@ I am not a player, so this is unknown territory for me.
  
 
 
-##e107 functionality:
+## e107 functionality:
 
 - install LGSL via e107 plugin manager
 
