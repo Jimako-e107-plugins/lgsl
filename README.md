@@ -1,10 +1,18 @@
 
-#e107 CMS version for LGSL - for PHP 7 + e107 CMS 2.3.0 only! 
- 
+# e107 CMS version for LGSL 
+
+for e107 2.3.3 
 
 Original author of LGSL - Richard Perry (www.greycube.com)
 
 Actual author of LGSL - tltneon 
+
+Thanks Asger from https://urbangamers.dk/ for testing data and advices to be able create version for LGSL  5.10.3
+
+Thanks TacTicTow  for testing version for LGSL 6.2.0
+
+I am not a player, so this is unknown territory for me. 
+ 
 
 
 ##e107 functionality:

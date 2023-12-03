@@ -15,7 +15,7 @@
  * #######################################
  */
 
-if (e_CURRENT_PLUGIN == 'lgsl')
+if (defined('e_CURRENT_PLUGIN') &&  e_CURRENT_PLUGIN == 'lgsl')
 {
 	// e107::css('lgsl', 'lgsl_files/styles/darken_style.css');
 	// original css files have conflicts with e107 admin styles
