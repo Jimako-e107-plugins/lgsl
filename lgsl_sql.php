@@ -1,4 +1,5 @@
-CREATE TABLE lgsl (
+<?php exit;?>
+CREATE TABLE IF NOT EXISTS `lgsl` (
 `id` INT(11) NOT NULL auto_increment,
 `type` VARCHAR(50)NOT NULL DEFAULT '',
 `ip` VARCHAR(255) NOT NULL DEFAULT '',
@@ -12,5 +13,5 @@ CREATE TABLE lgsl (
 `cache`TEXT NOT NULL,
 `cache_time` TEXT NOT NULL, 
 PRIMARY KEY (`id`)
-)TYPE=MyISAM;
+) ENGINE=MyISAM;
  
