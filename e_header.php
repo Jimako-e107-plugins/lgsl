@@ -30,6 +30,10 @@ if (defined('e_CURRENT_PLUGIN') &&  e_CURRENT_PLUGIN == 'lgsl')
               max-width: 245px;
           }
 
+          table input.form-control.input-block-level {
+            max-width: 100%;
+          }
+
           .table-responsive {
               display: block;
               width: 100%;

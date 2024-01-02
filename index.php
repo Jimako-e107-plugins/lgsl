@@ -30,6 +30,16 @@ if ($lgsl_prefs['style'])
   e107::css('lgsl', 'lgsl_files/styles/' . $lgsl_prefs['style']);
 }
 
+if (isset($lgsl_config['scripts']))
+{
+  foreach ($lgsl_config['scripts'] as $script)
+  {
+    //e107::js('lgsl', 'lgsl_files/scripts/' . $script, 'jquery'); paralax issue
+    e107::js('footer', e_PLUGIN.'lgsl/lgsl_files/scripts/' . $script, 'jquery');
+  }
+}
+
+
 //in lgsl_config you can use e107 stuff because usebar.php 
 $lgsl_prefs['zone_grid'] = e107::unserialize($lgsl_prefs['zone_grid']);
 $lgsl_prefs['zone_players'] = e107::unserialize($lgsl_prefs['zone_players']);
@@ -82,12 +92,15 @@ if ($lgsl_prefs['bootstrap3_imagefix'])
 }
 e107::css('inline', $css);
 e107::js('inline', $start . $inline_script . $end);
+
+
+
 require_once HEADERF;
 
 global $output, $lgsl_server_id;
 //------------------------------------------------------------------------------------------------------------+
 
-$output = "";
+$output = '<div id="container" style="background-position:initial">';
 $s = isset($_GET['s']) ? $_GET['s'] : "";
  
 if (is_numeric($s))
@@ -103,7 +116,7 @@ else
 {
   require "lgsl_files/lgsl_list.php";
 }
-
+$output .= "</div>";
 
 $ns->tablerender($lgsl_config['title'][0], $output);
 

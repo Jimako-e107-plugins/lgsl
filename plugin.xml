@@ -18,5 +18,14 @@
         icon128="images/icon_lgsl_32x32.png" primary="true" >LAN_CONFIGURE</link>
 	</adminLinks>
 	<pluginPrefs>
+		<pref name="feed_method">0</pref>
+		<pref name="feed_url"></pref>
+		<pref name="style">darken_style.css</pref>
+		<pref name="scripts"></pref>
+		<pref name="sort_servers_by">id</pref>
+		<pref name="sort_players_by">name</pref>
+		<pref name="image_mod">0</pref>
+		<pref name="list_totals">0</pref>
+		<pref name="list_totals">0</pref>
 	</pluginPrefs>
 </e107Plugin>

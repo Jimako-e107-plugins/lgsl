@@ -9,14 +9,14 @@
 //------------------------------------------------------------------------------------------------------------+
 //[ FEED: 0=OFF 1=CURL OR FSOCKOPEN 2=FSOCKOPEN ONLY / LEAVE THE URL ALONE UNLESS YOU KNOW WHAT YOUR DOING ]
 
-  $lgsl_config['feed']['method'] = 0;
-  $lgsl_config['feed']['url']    = "";
+  $lgsl_config['feed']['method'] = varset(e107::pref('feed_method'), "0"); 
+  $lgsl_config['feed']['url']    = varset(e107::pref('feed_url'), "");
 
 //------------------------------------------------------------------------------------------------------------+
 //[ ADDITIONAL FILES ]
-
+  $tmp = array_keys($lgsl_prefs['scripts']);  
   $lgsl_config['style'] = varset(e107::pref('style'), "darken_style.css"); // options: breeze_style.css, darken_style.css, classic_style.css, ogp_style.css, parallax_style.css, disc_ff_style.css, material_style.css, cards_style.css
-  $lgsl_config['scripts'] = [];
+  $lgsl_config['scripts'] = $tmp;
 
 //------------------------------------------------------------------------------------------------------------+
 //[ SHOW LOCATION FLAGS: 0=OFF 1=GEO-IP "GB"=MANUALLY SET COUNTRY CODE FOR SPEED ]
