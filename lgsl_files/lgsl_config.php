@@ -116,8 +116,7 @@ for ($fieldkey = 0; $fieldkey <= $zone_number; $fieldkey++)
 $lgsl_config['direct_index'] = varset($lgsl_prefs['direct_index'], 1);   // 1=link to index.php instead of the folder
 $lgsl_config['no_realpath']  = varset($lgsl_prefs['no_realpath'], 0);   // 1=do not use the realpath function
 $lgsl_config['url_path']     = varset($lgsl_prefs['url_path'], "");   // full url to /lgsl_files/ for when auto detection fails
-
-$lgsl_config['url_path']     = e107::url('lgsl', 'index'); 
+ 
 //------------------------------------------------------------------------------------------------------------+
 //[ ADVANCED SETTINGS ]
 
