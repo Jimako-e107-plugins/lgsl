@@ -45,7 +45,7 @@
   foreach ($server_list as $server)
   {
     $misc    = lgsl_server_misc($server);
-    $server  = lgsl_server_html($server);
+   // $server  = lgsl_server_html($server); FIX ME
     $percent = strval($server['s']['players'] == 0 || $server['s']['playersmax'] == 0 ? 0 : floor($server['s']['players']/$server['s']['playersmax']*100));
     $lastupd = Date($lgsl_config['text']['tzn'], (int)$server['s']['cache_time']);
     $gamelink= lgsl_build_link_params($uri, array("game" => $server['s']['game']));
@@ -91,14 +91,14 @@
       </td>
 
       <td class='details_cell'>";
-
+ 
       if ($lgsl_config['locations']) {
         $output .= "
         <a href='".lgsl_location_link($server['o']['location'])."' target='_blank' class='contry_link'>
           <img alt='{$misc['text_location']}' src='{$misc['icon_location']}' title='{$misc['text_location']}' class='contry_icon'>
         </a>";
       }
-
+ 
       $output .= "
         <a href='".lgsl_link($server['b']['ip'], $server['b']['c_port'])."' class='details_icon' title='{$lgsl_config['text']['vsd']}'></a>
       </td>

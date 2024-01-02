@@ -101,17 +101,21 @@ global $output, $lgsl_server_id;
 //------------------------------------------------------------------------------------------------------------+
 
 $output = '<div id="container" style="background-position:initial">';
-$s = isset($_GET['s']) ? $_GET['s'] : "";
+
+$s = isset($_GET['s']) ? $_GET['s'] : null;
+$ip = isset($_GET['ip']) ? $_GET['ip'] : null;
+$port = isset($_GET['port']) ? $_GET['port'] : null;
+
  
 if (is_numeric($s))
 {
-  $lgsl_server_id = $s;
   require "lgsl_files/lgsl_details.php";
 }
-elseif ($s == "add")
+elseif (isset($ip) && isset($port))
 {
-  require "lgsl_files/lgsl_add.php";
+  require "lgsl_files/lgsl_details.php"; 
 }
+ 
 else
 {
   require "lgsl_files/lgsl_list.php";
