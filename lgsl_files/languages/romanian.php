@@ -4,7 +4,7 @@
 
   global $lgsl_config;
 
-  $lgsl_config['text']['ttl'] = "Listă Live Servere";
+  $lgsl_config['text']['ttl'] = "Listă Servere Live";
   $lgsl_config['text']['vsd'] = "CLICK AICI PENTRU A VEDEA DETALIILE SERVERULUI";
   $lgsl_config['text']['slk'] = "CONECTEAZĂ-TE LA JOC";
   $lgsl_config['text']['sts'] = "Status";
@@ -79,7 +79,7 @@
   $lgsl_config['text']['dsb'] = "Inactiv";
   $lgsl_config['text']['aum'] = "UTILIZATORUL ȘI/SAU PAROLA ADMINISTRATORULUI LIPSESC DIN FIȘIERUL DE CONFIGURAȚIE";
   $lgsl_config['text']['apc'] = "PAROLA ADMINISTRATORULUI TREBUIE SĂ FIE DIFERITA DE PAROLA IMPLICITA";
-  $lgsl_config['text']['faq'] = "- Pentru a șterge un server din listă trebuie să lași câmpul pentru adresa IP gol și să apeși pe salvare.<br /><br />- Lasă portul pentru query gol pentru a permite LGSL să decidă pentru tine.<br /><br />- Portul software este necesar pentru câteva jocuri, implicit fiind 0.<br /><br />- Editează fișierul lgsl_config.php pentru a activa mai multe optiuni.<br /><br />- Menține LGSL actualizat la zi.";
+  $lgsl_config['text']['faq'] = "- Pentru a șterge un server din listă trebuie să lași câmpul pentru adresa IP gol și să apeși pe salvare.<br><br>- Lasă portul pentru query gol pentru a permite LGSL să decidă pentru tine.<br><br>- Portul software este necesar pentru câteva jocuri, implicit fiind 0.<br><br>- Editează fișierul lgsl_config.php pentru a activa mai multe optiuni.<br><br>- Menține LGSL actualizat la zi.";
   $lgsl_config['text']['fso'] = "Necesar pentru interogarea directă a serverelor";
   $lgsl_config['text']['crl'] = "Necesar pentru interogarea serverelor când fsockopen nu este disponibil";
   $lgsl_config['text']['mbs'] = "Necesar pentru a afișa corect numele serverelor sau ale jucătorilor care folosesc caractere UTF-8";
