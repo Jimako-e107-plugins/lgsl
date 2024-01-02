@@ -22,9 +22,8 @@ if (!defined('e107_INIT'))
   require_once("../../class2.php");
 }
 
+require("lgsl_files/lgsl_config.php");
 
-//<link rel='stylesheet' href='lgsl_files/styles/<?php echo $lgsl_config['style'];  
-$lgsl_prefs = e107::pref('lgsl');
 
 if ($lgsl_prefs['style'])
 {
@@ -90,7 +89,7 @@ global $output, $lgsl_server_id;
 
 $output = "";
 $s = isset($_GET['s']) ? $_GET['s'] : "";
-
+ 
 if (is_numeric($s))
 {
   $lgsl_server_id = $s;
