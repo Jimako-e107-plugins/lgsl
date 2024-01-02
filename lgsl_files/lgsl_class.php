@@ -2,7 +2,7 @@
 
  /*----------------------------------------------------------------------------------------------------------\
  |                                                                                                            |
- |                      [ LIVE GAME SERVER LIST ] [ � RICHARD PERRY FROM GREYCUBE.COM ]                       |
+ |                      [ LIVE GAME SERVER LIST ] [ © RICHARD PERRY FROM GREYCUBE.COM ]                       |
  |                                                                                                            |
  |    Released under the terms and conditions of the GNU General Public License Version 3 (http://gnu.org)    |
  |                                                                                                            |
@@ -41,7 +41,7 @@
       break;
 
       default: // "sa"
-        $link = $s ? 
+        $link = $s ?
                   $p ?
                     "{$lgsl_url_path}../{$index}?ip={$s}&port={$p}" :
                     "{$lgsl_url_path}../{$index}?s={$s}" :
@@ -432,7 +432,7 @@
     $misc['text_location']      = lgsl_text_location($server['o']['location']);
     $misc['name_filtered']      = lgsl_string_html($server['s']['name'], FALSE, 20); // LEGACY
     $misc['connect_filtered']   = ($server['b']['type'] == "discord" ? "https://discord.gg/" . $server['b']['ip'] : $server['b']['ip'] . ":" . $server['b']['c_port'] );
-    $misc['software_link']      = lgsl_software_link($server['b']['type'], $server['b']['ip'], $server['b']['c_port'], $server['b']['q_port'], $server['b']['s_port']);
+    $misc['software_link']      = lgsl_software_link($server['b']['type'], $server['b']['ip'], $server['b']['c_port'], $server['b']['q_port'], $server['b']['s_port'], $server['s']['game']);
     $misc['location_link']      = lgsl_location_link($server['o']['location']);
 
     return $misc;
@@ -596,7 +596,7 @@
       case "type":    { usort($server_list, "lgsl_sort_servers_by_type");    break; }
       case "status":  { usort($server_list, "lgsl_sort_servers_by_status");  break; }
       case "players": { usort($server_list, "lgsl_sort_servers_by_players"); break; }
-      
+
     }
 
     return $server_list;
@@ -705,7 +705,7 @@
 
     if     ($lgsl_config['sort']['players'] == "name")  { usort($server['p'], "lgsl_sort_players_by_name");  }
     elseif ($lgsl_config['sort']['players'] == "score") { usort($server['p'], "lgsl_sort_players_by_score"); }
-    elseif ($lgsl_config['sort']['players'] == "time") { usort($server['p'], "lgsl_sort_players_by_time"); }
+    elseif ($lgsl_config['sort']['players'] == "time")  { usort($server['p'], "lgsl_sort_players_by_time");  }
 
     return $server;
   }
@@ -868,11 +868,19 @@
 
 //------------------------------------------------------------------------------------------------------------+
 
+function lgsl_lang($code) { // FOR PREVENTING WARNINGS
+  global $lgsl_config;
+  if (!isset($lgsl_config['text'][$code])) { return "/#LGSL_LANG#{$code}#/"; }
+  return $lgsl_config['text'][$code];
+}
+
+//------------------------------------------------------------------------------------------------------------+
+
   function lgsl_location_link($location)
   {
     if (!$location) { return "#"; }
 
-    return "https://www.google.com/maps/search/{$location}/";
+    return "https://www.google.com/maps/search/{$location}+country/";
   }
 
 //------------------------------------------------------------------------------------------------------------+
@@ -1070,23 +1078,23 @@
             <summary style='margin-bottom: 12px;'>
               Open debug infos
             </summary>
-            <hr /><pre>".print_r($_SERVER, TRUE)."</pre>
-            <hr />#d0# ".__FILE__."
-            <hr />#d1# ".@realpath(__FILE__)."
-            <hr />#d2# ".dirname(__FILE__)."
-            <hr />#d3# {$lgsl_file_path}
-            <hr />#d4# {$_SERVER['DOCUMENT_ROOT']}
-            <hr />#d5# ".@realpath($_SERVER['DOCUMENT_ROOT'])."
-            <hr />#d6# {$lgsl_url_path}
-            <hr />#c0# {$lgsl_config['url_path']}
-            <hr />#c1# {$lgsl_config['no_realpath']}
-            <hr />#c2# {$lgsl_config['feed']['method']}
-            <hr />#c3# {$lgsl_config['feed']['url']}
-            <hr />#c4# {$lgsl_config['cache_time']}
-            <hr />#c5# {$lgsl_config['live_time']}
-            <hr />#c6# {$lgsl_config['timeout']}
-            <hr />#c7# {$lgsl_config['cms']}
-            <hr />
+            <hr><pre>".print_r($_SERVER, TRUE)."</pre>
+            <hr>#d0# ".__FILE__."
+            <hr>#d1# ".@realpath(__FILE__)."
+            <hr>#d2# ".dirname(__FILE__)."
+            <hr>#d3# {$lgsl_file_path}
+            <hr>#d4# {$_SERVER['DOCUMENT_ROOT']}
+            <hr>#d5# ".@realpath($_SERVER['DOCUMENT_ROOT'])."
+            <hr>#d6# {$lgsl_url_path}
+            <hr>#c0# {$lgsl_config['url_path']}
+            <hr>#c1# {$lgsl_config['no_realpath']}
+            <hr>#c2# {$lgsl_config['feed']['method']}
+            <hr>#c3# {$lgsl_config['feed']['url']}
+            <hr>#c4# {$lgsl_config['cache_time']}
+            <hr>#c5# {$lgsl_config['live_time']}
+            <hr>#c6# {$lgsl_config['timeout']}
+            <hr>#c7# {$lgsl_config['cms']}
+            <hr>
           </details>
           <select onchange='javascript:document.querySelector(\"link[rel=stylesheet]\").href = \"lgsl_files/styles/\" + this.value + \".css\"'>
             <option value='breeze_style'>breeze_style</option>

@@ -2,7 +2,7 @@
 
  /*----------------------------------------------------------------------------------------------------------\
  |                                                                                                            |
- |                      [ LIVE GAME SERVER LIST ] [ © RICHARD PERRY FROM GREYCUBE.COM ]                       |
+ |                      [ LIVE GAME SERVER LIST ] [ Â© RICHARD PERRY FROM GREYCUBE.COM ]                       |
  |                                                                                                            |
  |    Released under the terms and conditions of the GNU General Public License Version 3 (http://gnu.org)    |
  |                                                                                                            |
@@ -13,7 +13,7 @@
   require "lgsl_class.php";
   global $output;
 
-//-----------------------------------------------------------------------------------------------------------+
+//------------------------------------------------------------------------------------------------------------+
 
   if ($lgsl_config['public_add'])
   {
@@ -49,10 +49,9 @@
 
           <tr>
             <td colspan='2' class='center'>
-              <br />
+              <br>
               {$lgsl_config['text']['awm']}
-              <br />
-              <br />
+              <br><br>
             </td>
           </tr>
 
@@ -74,31 +73,30 @@
 
           <tr>
             <td> {$lgsl_config['text']['adr']} </td>
-            <td> <input type='text' name='form_ip' value='".lgsl_string_html($ip)."' size='15' maxlength='128' /> </td>
+            <td> <input type='text' name='form_ip' value='".lgsl_string_html($ip)."' onpaste='javascript:setTimeout(function(){const v=event.srcElement.value.split(\":\")[1];document.querySelector(\"input[name=form_ip]\").value=event.srcElement.value.trim();document.querySelector(\"input[name=form_c_port]\").value=v;document.querySelector(\"input[name=form_q_port]\").value=v;});' size='15' maxlength='128'> </td>
           </tr>
 
           <tr>
             <td> {$lgsl_config['text']['cpt']} </td>
-            <td> <input type='number' name='form_c_port' value='".lgsl_string_html($c_port)."' min='1024' max='65535' /> </td>
+            <td> <input type='number' name='form_c_port' value='".lgsl_string_html($c_port)."' min='1024' max='65535'> </td>
           </tr>
 
           <tr>
             <td> {$lgsl_config['text']['qpt']}
               <a href='https://github.com/tltneon/lgsl/wiki/Supported-Games,-Query-protocols,-Default-ports' target='_blank' id='new_q' style='position: absolute;background: #fff;  text-align: center;border-radius: 10px;width: 14px;height: 14px;border: 2px solid;margin-top: 7px;' title='How to choose protocol or query port?'>?</a>
             </td>
-            <td> <input type='number' name='form_q_port' value='".lgsl_string_html($q_port)."' min='1024' max='65535' /> </td>
+            <td> <input type='number' name='form_q_port' value='".lgsl_string_html($q_port)."' min='1024' max='65535'> </td>
           </tr>
 
           <tr>
             <td colspan='2' class='annotation'>
-              <input type='submit' name='lgsl_submit_test' value='{$lgsl_config['text']['ats']}' />
+              <input type='submit' name='lgsl_submit_test' value='{$lgsl_config['text']['ats']}'>
             </td>
           </tr>
 
         </table>
 
-        <br />
-        <br />
+        <br><br>
 
       </div>
     </form>";
@@ -181,7 +179,7 @@
               </div>
 
               <div>
-              <br />
+              <br>
               </div>";
             }
             else {
@@ -194,12 +192,12 @@
                 <div class='annotation'> {$lgsl_config['text']['asc']} </div>
 
                 <div>
-                <br />
+                <br>
                 </div>
 
                 <table class='details_table' style='text-align: center; margin: auto; max-width: 500px;'>
                   <tr> <td> <b> {$lgsl_config['text']['adr']} </b> </td> <td> {$ip}:{$c_port}                                          </td> </tr>
-                  <tr> <td> <b> {$lgsl_config['text']['sts']} </b> </td> <td> {$status}                                   </td> </tr>
+                  <tr> <td> <b> {$lgsl_config['text']['sts']} </b> </td> <td> {$status}                                                </td> </tr>
                   <tr> <td> <b> {$lgsl_config['text']['nam']} </b> </td> <td> {$server['s']['name']}                                   </td> </tr>
                   <tr> <td> <b> {$lgsl_config['text']['gme']} </b> </td> <td> {$server['s']['game']}                                   </td> </tr>
                   <tr> <td> <b> {$lgsl_config['text']['map']} </b> </td> <td> {$server['s']['map']}                                    </td> </tr>
@@ -207,19 +205,19 @@
                 </table>
 
                 <div>
-                <br />
+                <br>
                 </div>
 
                 <div class='annotation'>
-                  <input type='hidden' name='form_type'       value='".lgsl_string_html($type)."'   />
-                  <input type='hidden' name='form_ip'         value='".lgsl_string_html($ip)."'     />
-                  <input type='hidden' name='form_c_port'     value='".lgsl_string_html($c_port)."' />
-                  <input type='hidden' name='form_q_port'     value='".lgsl_string_html($q_port)."' />
-                  <input type='submit' name='lgsl_submit_add' value='{$lgsl_config['text']['aas']}' />
+                  <input type='hidden' name='form_type'       value='".lgsl_string_html($type)."'>
+                  <input type='hidden' name='form_ip'         value='".lgsl_string_html($ip)."'>
+                  <input type='hidden' name='form_c_port'     value='".lgsl_string_html($c_port)."'>
+                  <input type='hidden' name='form_q_port'     value='".lgsl_string_html($q_port)."'>
+                  <input type='submit' name='lgsl_submit_add' value='{$lgsl_config['text']['aas']}'>
                 </div>
 
                 <div>
-                <br />
+                <br>
                 </div>
 
               </form>";
@@ -245,7 +243,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 //------ PLEASE MAKE A DONATION OR SIGN THE GUESTBOOK AT GREYCUBE.COM IF YOU REMOVE THIS CREDIT ----------------------------------------------------------------------------------------------------+
 //------ WANNA BE HERE? https://github.com/tltneon/lgsl/wiki/Who-uses-LGSL -> LET CREDITS STAY :P --------------------------------------------------------------------------------------------------+
-  $output .= "<div style='text-align:center; font-family:tahoma; font-size:9px; padding: 33px 0px 11px 0px;'><a href='https://github.com/tltneon/lgsl' style='text-decoration:none'>".lgsl_version()."</a></div>";
+  $output .= "<div style='text-align:center; font-family:tahoma; font-size:9px; padding: 33px 0 11px 0;'><a href='https://github.com/tltneon/lgsl' style='text-decoration:none'>".lgsl_version()."</a></div>";
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 if ($lgsl_config['preloader'])

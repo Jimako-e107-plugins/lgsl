@@ -2,7 +2,7 @@
 
  /*----------------------------------------------------------------------------------------------------------\
  |                                                                                                            |
- |                      [ LIVE GAME SERVER LIST ] [ � RICHARD PERRY FROM GREYCUBE.COM ]                       |
+ |                      [ LIVE GAME SERVER LIST ] [ © RICHARD PERRY FROM GREYCUBE.COM ]                       |
  |                                                                                                            |
  |    Released under the terms and conditions of the GNU General Public License Version 3 (http://gnu.org)    |
  |                                                                                                            |
@@ -37,13 +37,14 @@
     "bf2142"        => "Battlefield 2142",
     "callofduty"    => "Call Of Duty",
     "callofdutybo3" => "Call Of Duty: Black Ops 3",
-    "callofdutyiw"  => "Call Of Duty (IW5, IW6x)",
+    "callofdutyiw"  => "Call Of Duty (IW4, IW5, IW6x)",
     "callofdutyuo"  => "Call Of Duty: United Offensive",
     "callofdutywaw" => "Call Of Duty: World at War",
     "callofduty2"   => "Call Of Duty 2",
     "callofduty4"   => "Call Of Duty 4 / CoD4X",
     "cncrenegade"   => "Command and Conquer: Renegade",
     "conanexiles"   => "Conan Exiles",
+    "cryofall"      => "Cryofall",
     "crysis"        => "Crysis",
     "crysiswars"    => "Crysis Wars",
     "cs2d"          => "Counter-Strike 2D",
@@ -53,6 +54,7 @@
     "doomzdaemon"   => "Doom - ZDaemon",
     "doom3"         => "Doom 3",
     "dh2005"        => "Deer Hunter 2005",
+    "eco"           => "ECO",
     "factorio"      => "Factorio",
     "farcry"        => "Far Cry",
     "farmsim"       => "Farming Simulator",
@@ -68,6 +70,7 @@
     "ghostrecon"    => "Ghost Recon",
     "graw"          => "Ghost Recon: Advanced Warfighter",
     "graw2"         => "Ghost Recon: Advanced Warfighter 2",
+    "gtac"          => "GTA Connected",
     "gtr2"          => "GTR 2",
     "had2"          => "Hidden and Dangerous 2",
     "halflife"      => "Half-life Steam Protocol (CS 1.6, etc)",
@@ -80,12 +83,14 @@
     "killingfloor"  => "Killing Floor",
     "kingpin"       => "Kingpin: Life of Crime",
     "m2mp"          => "Mafia II Multiplayer",
+    "mafiac"        => "Mafia Connected",
     "minecraft"     => "Minecraft",
     "mohaa"         => "Medal of Honor: Allied Assault",
     "mohaab"        => "Medal of Honor: Allied Assault Breakthrough",
     "mohaas"        => "Medal of Honor: Allied Assault Spearhead",
     "mohpa"         => "Medal of Honor: Pacific Assault",
     "mta"           => "Multi Theft Auto",
+    "mumble"        => "Mumble",
     "nascar2004"    => "Nascar Thunder 2004",
     "neverwinter"   => "NeverWinter Nights",
     "neverwinter2"  => "NeverWinter Nights 2",
@@ -114,6 +119,7 @@
     "sof2"          => "Soldier of Fortune 2",
     "soldat"        => "Soldat",
     "source"        => "Source Protocol ( Half-Life 2, etc. )",
+    "srb2"          => "Sonic Robo Blast 2",
     "stalker"       => "S.T.A.L.K.E.R.",
     "stalkercop"    => "S.T.A.L.K.E.R. Call of Pripyat",
     "stalkercs"     => "S.T.A.L.K.E.R. Clear Sky",
@@ -185,6 +191,7 @@
     "callofduty4"   => "02",
     "cncrenegade"   => "03",
     "conanexiles"   => "05",
+    "cryofall"      => "44",
     "crysis"        => "06",
     "crysiswars"    => "06",
     "cs2d"          => "29",
@@ -194,6 +201,7 @@
     "doomzdaemon"   => "28",
     "doom3"         => "10",
     "dh2005"        => "09",
+    "eco"           => "40",
     "factorio"      => "42",
     "had2"          => "03",
     "halflife"      => "05",
@@ -214,6 +222,7 @@
     "ghostrecon"    => "19",
     "graw"          => "06",
     "graw2"         => "09",
+    "gtac"          => "45",
     "gtr2"          => "15",
     "jediknight2"   => "02",
     "jediknightja"  => "02",
@@ -221,6 +230,7 @@
     "killingfloor"  => "13",
     "kingpin"       => "03",
     "m2mp"          => "39",
+    "mafiac"        => "45",
     "minecraft"     => "06",
     "mohaa"         => "03",
     "mohaab"        => "03",
@@ -231,6 +241,7 @@
     "mohaas_"       => "02",
     "mohpa_"        => "02",
     "mta"           => "08",
+    "mumble"        => "43",
     "nascar2004"    => "09",
     "neverwinter"   => "09",
     "neverwinter2"  => "09",
@@ -260,6 +271,7 @@
     "sof2"          => "02",
     "soldat"        => "08",
     "source"        => "05",
+    "srb2"          => "46",
     "stalker"       => "06",
     "stalkercop"    => "09",
     "stalkercs"     => "09",
@@ -300,7 +312,7 @@
 //------------------------------------------------------------------------------------------------------------+
 //------------------------------------------------------------------------------------------------------------+
 
-  function lgsl_software_link($type, $ip, $c_port, $q_port, $s_port)
+  function lgsl_software_link($type, $ip, $c_port, $q_port, $s_port, $game)
   {
     $lgsl_software_link = array(
     "aarmy"         => "qtracker://{IP}:{S_PORT}?game=ArmyOperations&action=show",
@@ -327,6 +339,7 @@
     "callofduty4"   => "cod4://{IP}:{S_PORT}",
     "cncrenegade"   => "qtracker://{IP}:{S_PORT}?game=CommandConquerRenegade&action=show",
     "conanexiles"   => "steam://connect/{IP}:{C_PORT}",
+    "cryofall"      => "steam://connect/{IP}:{C_PORT}",
     "crysis"        => "qtracker://{IP}:{S_PORT}?game=Crysis&action=show",
     "crysiswars"    => "qtracker://{IP}:{S_PORT}?game=CrysisWars&action=show",
     "cs2d"          => "steam://connect/{IP}:{C_PORT}",
@@ -336,6 +349,7 @@
     "doomzdaemon"   => "http://www.zdaemon.org",
     "doom3"         => "qtracker://{IP}:{S_PORT}?game=Doom3&action=show",
     "dh2005"        => "http://en.wikipedia.org/wiki/Deer_Hunter_(computer_game)",
+    "eco"           => "http://{IP}:{Q_PORT}",
     "factorio"      => "steam://connect/{IP}",
     "farcry"        => "qtracker://{IP}:{S_PORT}?game=FarCry&action=show",
     "farmsim"       => "steam://connect/{IP}:{C_PORT}",
@@ -351,6 +365,7 @@
     "ghostrecon"    => "http://en.wikipedia.org/wiki/Tom_Clancy's_Ghost_Recon",
     "graw"          => "qtracker://{IP}:{S_PORT}?game=GhostRecon&action=show",
     "graw2"         => "http://en.wikipedia.org/wiki/Tom_Clancy's_Ghost_Recon_Advanced_Warfighter_2",
+    "gtac"          => "gtac://connect/{IP}:{C_PORT}/gta:{GAME}",
     "gtr2"          => "http://en.wikipedia.org/wiki/GTR2",
     "had2"          => "http://en.wikipedia.org/wiki/Hidden_&_Dangerous_2",
     "halflife"      => "steam://connect/{IP}:{C_PORT}",
@@ -363,12 +378,14 @@
     "killingfloor"  => "steam://connect/{IP}:{C_PORT}",
     "kingpin"       => "qtracker://{IP}:{S_PORT}?game=Kingpin&action=show",
     "m2mp"          => "https://m2mp.de/",
+    "mafiac"        => "mafiac://connect/{IP}:{C_PORT}/mafia:{GAME}",
     "minecraft"     => "minecraft://{IP}:{C_PORT}/",
     "mohaa"         => "qtracker://{IP}:{S_PORT}?game=MedalofHonorAlliedAssault&action=show",
     "mohaab"        => "qtracker://{IP}:{S_PORT}?game=MedalofHonorAlliedAssaultBreakthrough&action=show",
     "mohaas"        => "qtracker://{IP}:{S_PORT}?game=MedalofHonorAlliedAssaultSpearhead&action=show",
     "mohpa"         => "qtracker://{IP}:{S_PORT}?game=MedalofHonorPacificAssault&action=show",
     "mta"           => "mtasa://{IP}:{C_PORT}",
+    "mumble"        => "mumble://{IP}/",
     "nascar2004"    => "http://en.wikipedia.org/wiki/NASCAR_Thunder_2004",
     "neverwinter"   => "qtracker://{IP}:{S_PORT}?game=NeverwinterNights&action=show",
     "neverwinter2"  => "qtracker://{IP}:{S_PORT}?game=NeverwinterNights&action=show",
@@ -397,6 +414,7 @@
     "sof2"          => "qtracker://{IP}:{S_PORT}?game=SoldierOfFortune2&action=show",
     "soldat"        => "soldat://{IP}:{C_PORT}",
     "source"        => "steam://connect/{IP}:{C_PORT}",
+    "srb2"          => "javascript:prompt('Put it into console:', '{IP}:{C_PORT}')",
     "stalker"       => "qtracker://{IP}:{S_PORT}?game=STALKER_ShadowChernobyl&action=show",
     "stalkercop"    => "qtracker://{IP}:{S_PORT}?game=STALKER_CallOfPripyat&action=show",
     "stalkercs"     => "qtracker://{IP}:{S_PORT}?game=STALKER_ClearSky&action=show",
@@ -436,7 +454,7 @@
     if (!isset($lgsl_software_link[$type])) { $type = str_replace("_", "", $type); }
 
     // INSERT DATA INTO STATIC LINK - CONVERT SPECIAL CHARACTERS - RETURN
-    return htmlentities(str_replace(array("{IP}", "{C_PORT}", "{Q_PORT}", "{S_PORT}"), array($ip, $c_port, $q_port, $s_port), $lgsl_software_link[$type]), ENT_QUOTES);
+    return htmlentities(str_replace(array("{IP}", "{C_PORT}", "{Q_PORT}", "{S_PORT}", "{GAME}"), array($ip, $c_port, $q_port, $s_port, $game), $lgsl_software_link[$type]), ENT_QUOTES);
   }
 
 //------------------------------------------------------------------------------------------------------------+
@@ -448,6 +466,7 @@
     "bfbc2"         => "tcp",
     "bf3"           => "tcp",
     "discord"       => "http",
+    "eco"           => "http",
     "farmsim"       => "http",
     "fivem"         => "http",
     "ragemp"        => "http",
@@ -457,7 +476,7 @@
     "ts3"           => "tcp",
     "teaspeak"      => "tcp",
     "wow"           => "tcp");
-    
+
     return isset($lgsl_scheme_list[$type]) ? $lgsl_scheme_list[$type] : "udp";
   }
 
@@ -652,7 +671,7 @@
     $lgsl_config['timeout'] = intval($lgsl_config['timeout']);
 
     if ($scheme == 'http') {
-      
+
       if(!function_exists('curl_init') || !function_exists('curl_setopt') || !function_exists('curl_exec')) return FALSE;
 
       $lgsl_fp =  curl_init('');
@@ -798,12 +817,11 @@
     }
     $item = explode("\\", $part[1]); // SPLIT PART INTO ITEMS
 
-    foreach ($item as $item_key => $data_key)
-    {
-      if (!($item_key % 2)) { continue; } // SKIP EVEN KEYS
-
-      $data_key               = strtolower(lgsl_parse_color($data_key, "1"));
-      $server['e'][$data_key] = lgsl_parse_color($item[$item_key+1], "1");
+    $s = 1;
+    if ($item[0]) $s = 0; // IW4 HAS NO EXTRA "\"
+    for ($i = $s; $i < count($item); $i += 2) { // SKIP EVEN KEYS
+      $data_key               = strtolower(lgsl_parse_color($item[$i], "1"));
+      $server['e'][$data_key] = lgsl_parse_color($item[$i+1], "1");
     }
 
 //---------------------------------------------------------+
@@ -843,9 +861,9 @@
     {
       $pattern = "/(.*) (.*) \"(.*)\" (.*)/"; $fields = array(1=>"score", 2=>"ping", 3=>"name", 4=>"team");
     }
-    elseif ($server['b']['type'] == "sof2") // (SCORE) (PING) (DEATHS) "(NAME)"
+    elseif ($server['b']['type'] == "sof2") // (SCORE) (PING) "(NAME)"
     {
-      $pattern = "/(.*) (.*) (.*) \"(.*)\"/"; $fields = array(1=>"score", 2=>"ping", 3=>"deaths", 4=>"name");
+      $pattern = "/(.*) (.*) \"(.*)\"/"; $fields = array(1=>"score", 2=>"ping", 3=>"name");
     }
     elseif (strpos($server['b']['type'], "mohpa") !== FALSE) // (?) (SCORE) (?) (TIME) (?) "(RANK?)" "(NAME)"
     {
@@ -1242,11 +1260,18 @@
       }
       $server['e']['tags']        = lgsl_cut_string($buffer);
 
-      if($server['s']['game'] == 'rust'){
+      if ($server['s']['game'] == 'rust') {
         preg_match('/cp\d{1,3}/', $server['e']['tags'], $e);
         $server['s']['players'] = substr($e[0], 2);
         preg_match('/mp\d{1,3}/', $server['e']['tags'], $e);
         $server['s']['playersmax'] = substr($e[0], 2);
+      }
+      if ($server['s']['game'] == 'Y4YNzpz6Cuc=') { // EURO TRUCK SIMULATOR 2
+        $server['s']['game'] = 'Euro Truck Simulator 2';
+        $server['s']['map'] = substr($server['s']['map'], 0, -4);
+      if ($server['s']['map'] == '/map/usa') {
+        $server['s']['game'] = 'American Truck Simulator';
+      }
       }
     }
 
@@ -2081,7 +2106,7 @@
         $server['p'][$i]['ping']  = lgsl_unpack(lgsl_cut_byte($buffer, 4), "S");
       }
     }
-    
+
 //---------------------------------------------------------+
 
     elseif ($response_type == "c")
@@ -3976,7 +4001,8 @@
     $server['e']['id'] = $buffer['guild']['id'];
     if($buffer['guild']['description'])
       $server['e']['description'] = $buffer['guild']['description'];
-    if($buffer['guild']['welcome_screen'] && $buffer['guild']['welcome_screen']['description'])
+   // PHP 8.2.1: Undefined array key "welcome_screen"
+    if(isset($buffer['guild']['welcome_screen']) && $buffer['guild']['welcome_screen']['description'])
       $server['e']['description'] = $buffer['guild']['welcome_screen']['description'];
     $server['e']['features'] = implode(', ', $buffer['guild']['features']);
     $server['e']['nsfw'] = (int) $buffer['guild']['nsfw'];
@@ -4040,14 +4066,14 @@
 
     return TRUE;
   }
-  
+
 //------------------------------------------------------------------------------------------------------------+
 //------------------------------------------------------------------------------------------------------------+
 
   function lgsl_query_38(&$server, &$lgsl_need, &$lgsl_fp) // Terraria
   {
     if (!$lgsl_fp) return FALSE;
-    
+
     curl_setopt($lgsl_fp, CURLOPT_URL, "http://{$server['b']['ip']}:{$server['b']['q_port']}/v2/server/status?players=true");
     $buffer = curl_exec($lgsl_fp);
     $buffer = json_decode($buffer, true);
@@ -4056,7 +4082,7 @@
       $server['e']['_error']    = $buffer['error'];
       return FALSE;
     }
-    
+
     $server['s']['name']        = $buffer['name'];
     $server['s']['map']         = $buffer['world'];
     $server['s']['players']     = $buffer['playercount'];
@@ -4093,19 +4119,60 @@
 //------------------------------------------------------------------------------------------------------------+
 //------------------------------------------------------------------------------------------------------------+
 
-  function lgsl_query_40(&$server, &$lgsl_need, &$lgsl_fp) // Farming Simulator
+  function lgsl_query_40(&$server, &$lgsl_need, &$lgsl_fp) // HTTP CRAWLER
   {
-    curl_setopt($lgsl_fp, CURLOPT_URL, "http://{$server['b']['ip']}:{$server['b']['q_port']}/index.html"); // CAN QUERY ONLY SERVER NAME AND ONLINE STATUS, MEH
+    $urls = array(
+      'farmsim' => "http://{$server['b']['ip']}:{$server['b']['q_port']}/index.html",
+      'eco' => "http://{$server['b']['ip']}:{$server['b']['q_port']}/info"
+    );
+    curl_setopt($lgsl_fp, CURLOPT_URL, $urls[$server['b']['type']]);
     $buffer = curl_exec($lgsl_fp);
-
     if (!$buffer) return FALSE;
-    
-    preg_match('/<h2>Login to [\w\d\s\/\\&@"\'-]+<\/h2>/', $buffer, $name);
 
-    $server['s']['name']        = substr($name[0], 12, strlen($name[0])-17);
-    $server['s']['map']         = "Farm";
+    switch ($server['b']['type']) {
+      // Farming Simulator // CAN QUERY ONLY SERVER NAME AND ONLINE STATUS, MEH
+      case 'farmsim': {
+        preg_match('/<h2>Login to [\w\d\s\/\\&@"\'-]+<\/h2>/', $buffer, $name);
 
-    return strpos($buffer, 'status-indicator online') !== FALSE;
+        $server['s']['name']        = substr($name[0], 12, strlen($name[0])-17);
+        $server['s']['map']         = "Farm";
+
+        return strpos($buffer, 'status-indicator online') !== FALSE;
+      }
+      // ECO
+      case 'eco': {
+        $buffer = json_decode($buffer, true);
+
+        $server['s']['name']        = strip_tags($buffer['Description']);
+        $server['s']['map']         = "World";
+        $server['s']['players']     = $buffer['OnlinePlayers'];
+        $server['s']['playersmax']  = $buffer['TotalPlayers'];
+        $server['s']['password']    = (int) $buffer['HasPassword'];
+
+        if ($server['s']['players']) {
+          foreach ($buffer['OnlinePlayersNames'] as $key => $value) {
+            $server['p'][$key]['name'] = $value;
+          }
+        }
+
+      function t($t, $s = 0) {return (int)($t / 86400) + $s . " days " . ($t / 86400 % 3600) . " hrs " . ($t / 3600 % 60) . " mins";}
+      $server['e']['Laws']               = $buffer['Laws'];
+      $server['e']['Plants']             = $buffer['Plants'];
+      $server['e']['Animals']            = $buffer['Animals'];
+      $server['e']['Version']            = $buffer['Version'];
+      $server['e']['Discord']            = $buffer['DiscordAddress'];
+      $server['e']['JoinUrl']            = $buffer['JoinUrl'];
+      $server['e']['WorldSize']          = $buffer['WorldSize'];
+      $server['e']['EconomyDesc']        = $buffer['EconomyDesc'];
+      $server['e']['description']        = $buffer['DetailedDescription'];
+      $server['e']['PeakActivePlayers']  = $buffer['PeakActivePlayers'];
+      $server['e']['TimeSinceStart']     = t($buffer['TimeSinceStart'], 1);
+      $server['e']['HasMeteor']          = $buffer['HasMeteor'];
+      if ($buffer['HasMeteor']) $server['e']['TimeLeft'] = t($buffer['TimeLeft']);
+      return TRUE;
+      }
+    default: return FALSE;
+    }
   }
 
 //------------------------------------------------------------------------------------------------------------+
@@ -4207,6 +4274,136 @@
 //------------------------------------------------------------------------------------------------------------+
 //------------------------------------------------------------------------------------------------------------+
 
+  function lgsl_query_43(&$server, &$lgsl_need, &$lgsl_fp) // Mumble
+  {
+    if (!$lgsl_fp) return FALSE;
+    fwrite($lgsl_fp, "\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\x08");
+    $buffer = fread($lgsl_fp, 4096);
+    if (!$buffer) return FALSE;
+    $server['s']['name']        = "Mumble Server";
+    $server['s']['map']         = "Mumble";
+    lgsl_cut_byte($buffer, 1); // 0
+    $server['e']['version'] = ord(lgsl_cut_byte($buffer, 1)) .".". ord(lgsl_cut_byte($buffer, 1)) .".". ord(lgsl_cut_byte($buffer, 1));
+    lgsl_cut_byte($buffer, 8); // challenge
+    $server['s']['players'] = lgsl_unpack(lgsl_cut_byte($buffer, 4), "N");
+    $server['s']['playersmax'] = lgsl_unpack(lgsl_cut_byte($buffer, 4), "N");
+    return TRUE;
+  }
+	
+	function lgsl_query_44(&$server, &$lgsl_need, &$lgsl_fp) { // Cryofall (by tltneon)
+		fwrite($lgsl_fp, "\x05\x0b\x00\x00\x00\x86\x76\x41\x31\xa0\x87\xdb\x08\x10\x02\x00\x55\xf0\x86\xff\xde\x58\x00\x00\x00\x00\x00\x00\x00\x00\x08\x00\x00\x00\x43\x72\x79\x6f\x46\x61\x6c\x6c");
+		$buffer = fread($lgsl_fp, 4096);
+		if (!$buffer) {
+			return false;
+		}
+		fwrite($lgsl_fp, "\x0c\x0a\x00\x01\x00\x00\x02\x00\x05\x60\x02\xe8\x03\x07\x00\x00\x06\x5f\x02\x20\x4e\x01");
+		fread($lgsl_fp, 4096);
+
+		fwrite($lgsl_fp, "\x01\x00\x00\x02\x00\x05\x60\x02\xe8\x03");
+		$buffer = fread($lgsl_fp, 4096);
+		if (strlen($buffer) < 12) {
+			fwrite($lgsl_fp, "\x00\x06\x61\x02\x20\x4e\x02");
+			$buffer = fread($lgsl_fp, 4096);
+		}
+		$server['s']['map'] = "Cryofall";
+		$server['e'] = [];
+		if (strlen($buffer) < 12) {
+			$server['s']['name'] = "Cryofall server";
+			$server['s']['players'] = 0;
+			$server['s']['playersmax'] = 0;
+			$server['e']['_error'] = "Server working but not sends data";
+		} else {
+			lgsl_cut_byte($buffer, 11);
+			$server['s']['name'] = lgsl_cut_byte($buffer, lgsl_unpack(lgsl_cut_byte($buffer, 2), "S"));
+			lgsl_cut_byte($buffer, 2);
+			$server['e']['version'] = lgsl_cut_byte($buffer, lgsl_unpack(lgsl_cut_byte($buffer, 2), "S"));
+			$server['s']['players'] = lgsl_unpack(lgsl_cut_byte($buffer, 2), "S");
+			$server['s']['playersmax'] = lgsl_unpack(lgsl_cut_byte($buffer, 2), "S"); lgsl_cut_byte($buffer, 3);
+			$server['e']['description'] = lgsl_parse_color(lgsl_cut_byte($buffer, lgsl_unpack(lgsl_cut_byte($buffer, 2), "S")), 'factorio');
+			lgsl_cut_byte($buffer, lgsl_unpack(lgsl_cut_byte($buffer, 2), "S") - 8);
+			$server['e']['GUID'] = '';
+			for ($i = 0; $i < 16; $i++) {
+				$server['e']['GUID'] = bin2hex(lgsl_cut_byte($buffer, 1)) . $server['e']['GUID'];
+			}
+			$server['e']['GUID'] = strtoupper($server['e']['GUID']);
+			lgsl_cut_byte($buffer, 8);
+			$mods = ord(lgsl_cut_byte($buffer, 1));
+			for ($i = 0; $i < $mods; $i++) {
+				$server['e']["mod{$i}"] = lgsl_cut_byte($buffer, lgsl_unpack(lgsl_cut_byte($buffer, 2), 'S')) ." v" .lgsl_cut_byte($buffer, lgsl_unpack(lgsl_cut_byte($buffer, 2), 'S'))." - ".lgsl_cut_byte($buffer, lgsl_unpack(lgsl_cut_byte($buffer, 2), 'S'));				lgsl_cut_byte($buffer, 2);
+			}
+			$mods = ord(lgsl_cut_byte($buffer, 1));
+			for ($i = 0; $i < $mods; $i++) {
+				$server['e']["option{$i}"] = lgsl_cut_byte($buffer, lgsl_unpack(lgsl_cut_byte($buffer, 2), "S"));
+			}
+			$server['e']["community_server"] = ord(lgsl_cut_byte($buffer, 1));
+			$server['e']["no_client_mods"] = ord(lgsl_cut_byte($buffer, 1));
+		}
+		return TRUE;
+	}
+
+	function lgsl_query_45(&$server, &$lgsl_need, &$lgsl_fp) { // GTA / Mafia Connected
+		fwrite($lgsl_fp, "\xFF\xFFUGP\x00\x01\x00");
+		$buffer = fread($lgsl_fp, 4096);
+		if (!$buffer) return false;
+		fwrite($lgsl_fp, "\xFF\xFFUGP\x00\x01\x01" . chr(0x01 | 0x08) . chr(0x04 | 0x08 | 0x20 | 0x40) . chr(0x01 | 0x02 | 0x04));
+		$buffer = fread($lgsl_fp, 4096);
+		lgsl_cut_byte($buffer, 8);
+		switch (ord(lgsl_cut_byte($buffer, 1))) {
+			case 1: $server['s']["game"] = 'iii'; break;
+			case 2: $server['s']["game"] = 'vc'; break;
+			case 3: $server['s']["game"] = 'sa'; break;
+			case 5: $server['s']["game"] = 'iv'; break;
+			case 6: $server['s']["game"] = 'iv_eflc'; break;
+			case 10: $server['s']["game"] = 'mafia'; break;
+		}
+		lgsl_cut_byte($buffer, 2);
+		$server['s']["name"] = lgsl_cut_byte($buffer, ord(lgsl_cut_byte($buffer, 1)));
+		$server['s']["mode"] = lgsl_cut_byte($buffer, ord(lgsl_cut_byte($buffer, 1)));
+		$server['s']["map"] = 'default';
+		$server['s']['players'] = ord(lgsl_cut_byte($buffer, 1));
+		$server['s']['playersmax'] = ord(lgsl_cut_byte($buffer, 1));
+		for ($i = ord(lgsl_cut_byte($buffer, 1)); $i > 0; $i--) {
+			$server['e'][lgsl_cut_byte($buffer, ord(lgsl_cut_byte($buffer, 1)))] = lgsl_cut_byte($buffer, ord(lgsl_cut_byte($buffer, 1)));
+		}
+		return TRUE;
+	}
+	
+	function lgsl_query_46(&$server, &$lgsl_need, &$lgsl_fp) { // SRB2
+		function checksum ($p, $l) {
+			$n = strlen($p) - $l;
+			$c = 0x1234567;
+			for ($i = 0; $i < $n; ++$i)
+				$c += ord($p[$l + $i]) * ($i + 1);
+			return $c;
+		}
+
+		$buf = pack('xxCx', 12) . pack('x5');
+		fwrite($lgsl_fp, pack('V', checksum($buf, 0)) . $buf);
+		$buffer = fread($lgsl_fp, 4096);
+		lgsl_cut_byte($buffer, 10);
+		$server['e']["application"] = lgsl_cut_byte($buffer, 16);
+		$server['e']["version"] = ord(lgsl_cut_byte($buffer, 1));
+		$server['e']["subversion"] = ord(lgsl_cut_byte($buffer, 1));
+		$server['s']['players'] = ord(lgsl_cut_byte($buffer, 1));
+		$server['s']['playersmax'] = ord(lgsl_cut_byte($buffer, 1));
+		lgsl_cut_byte($buffer, 1);
+		$server['e']["mode"] = lgsl_cut_byte($buffer, 24);
+		$server['e']['modifiedgame'] = ord(lgsl_cut_byte($buffer, 1));
+		$server['e']['cheatsenabled'] = ord(lgsl_cut_byte($buffer, 1));
+		$server['e']['dedicated'] = ord(lgsl_cut_byte($buffer, 1));
+		$server['e']['lotsofaddons'] = $server['e']['dedicated'] & 0x20;
+		$server['e']['dedicated'] = $server['e']['dedicated'] & 0x40;
+		$server['e']['fileneedednum'] = ord(lgsl_cut_byte($buffer, 1));
+		lgsl_cut_byte($buffer, 8);
+		$server['s']["name"] = lgsl_cut_byte($buffer, 32);
+		$server['e']["mapname"] = lgsl_cut_byte($buffer, 8);
+		$server['s']["map"] = lgsl_cut_byte($buffer, 33);
+		return TRUE;
+	}
+
+//------------------------------------------------------------------------------------------------------------+
+//------------------------------------------------------------------------------------------------------------+
+
 function lgsl_unescape($text) {
   $escaped = array('\t', '\v', '\r', '\n', '\f', '\s', '\p', '\/');
   $unescaped = array(' ', ' ', ' ', ' ', ' ', ' ', '|', '/');
@@ -4227,7 +4424,7 @@ function lgsl_unescape($text) {
 
     if (empty($host['host']) || empty($host['path'])) { exit("LGSL FEED PROBLEM: INVALID URL"); }
 
-    $host_query = "?type={$server['b']['type']}&ip={$server['b']['ip']}&c_port={$server['b']['c_port']}&q_port={$server['b']['q_port']}&s_port={$server['b']['s_port']}&request={$request}&version=6.2.0";
+    $host_query = "?type={$server['b']['type']}&ip={$server['b']['ip']}&c_port={$server['b']['c_port']}&q_port={$server['b']['q_port']}&s_port={$server['b']['s_port']}&request={$request}&version=6.2.1";
 
     if (function_exists("json_decode")) { $host_query .= function_exists("gzuncompress") ? "&format=4" : "&format=3"; }
     else                                { $host_query .= function_exists("gzuncompress") ? "&format=2" : "&format=1"; }
@@ -4521,7 +4718,7 @@ function lgsl_unescape($text) {
 
     return $string;
   }
-  
+
 //---------------------------------------------------------+
 
   function lgsl_print_raw_buffer(&$buffer){
@@ -4543,7 +4740,7 @@ function lgsl_unescape($text) {
 
     echo("
       <style>.char-element {display: inline-block;max-width: 24px;border: 1px solid black;text-align: center;} .char-cell {width: 24px;height: 18px;display: inline-block;}</style>
-      <span style='color:red;'>". count($symbols) ."</span> symbols <span style='color:yellow;'>>></span>{$raw}<br />
+      <span style='color:red;'>". count($symbols) ."</span> symbols <span style='color:yellow;'>>></span>{$raw}<br>
       <details style='width: 260px;'>{$raw2}</details>
     ");
   }
@@ -4705,7 +4902,7 @@ function lgsl_unescape($text) {
 
   function lgsl_version()
   {
-    return "Powered by LGSL</a> | <a href='https://github.com/tltneon/lgsl/releases'>v 6.2.0"; // little dirty trick
+    return "Powered by LGSL</a> | <a href='https://github.com/tltneon/lgsl/releases'>v 6.2.1"; // little dirty trick
   }
 
 //------------------------------------------------------------------------------------------------------------+
