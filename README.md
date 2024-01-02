@@ -7,6 +7,8 @@ Original author of LGSL - Richard Perry (www.greycube.com)
 
 Actual author of LGSL - tltneon 
 
+Repo: https://github.com/tltneon/lgsl
+
 Thanks Asger from https://urbangamers.dk/ for testing data and advices to be able create version for LGSL  5.10.3
 
 Thanks TacTicTow  for testing version for LGSL 6.2.0
