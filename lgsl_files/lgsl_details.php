@@ -39,7 +39,7 @@
     $server = lgsl_sort_players($server);
     $server = lgsl_sort_extras($server);
     $misc   = lgsl_server_misc($server);
-    $server = lgsl_server_html($server);
+ //   $server = lgsl_server_html($server);
 
   //------------------------------------------------------------------------------------------------------------+
 
@@ -94,7 +94,7 @@
     $output .= "<div class='spacer'></div>";
 
   //------------------------------------------------------------------------------------------------------------+
-
+ 
   if (extension_loaded('gd')) {
     $g = "ip={$server['b']['ip']}&port={$server['b']['c_port']}";
     if ($lgsl_config['history']) {
@@ -109,13 +109,13 @@
           {$lgsl_config['text']['cts']}
         </summary>
         <div>
-          <div style='overflow-x: auto;'><img src='userbar.php?{$g}' alt='{$server["s"]["name"]}'/></div>
+          <div style='overflow-x: auto;'><img src='{$p}userbar.php?{$g}' alt='{$server["s"]["name"]}'/></div>
           <textarea onClick='this.select();'>[url={$p}?{$g}][img]{$p}userbar.php?{$g}[/img][/url]</textarea><br><br>
 
-          <div style='overflow-x: auto;'><img src='userbar.php?{$g}&t=2' alt='{$server["s"]["name"]}'/></div>
+          <div style='overflow-x: auto;'><img src='{$p}userbar.php?{$g}&t=2' alt='{$server["s"]["name"]}'/></div>
           <textarea onClick='this.select();'>[url={$p}?{$g}][img]{$p}userbar.php?{$g}&t=2[/img][/url]</textarea><br><br>
 
-          <img src='userbar.php?{$g}&t=3' alt='{$server["s"]["name"]}'/><br>
+          <img src='{$p}userbar.php?{$g}&t=3' alt='{$server["s"]["name"]}'/><br>
           <textarea onClick='this.select();'>[url={$p}?{$g}][img]{$p}userbar.php?{$g}&t=3[/img][/url]</textarea>
         </div>
       </details>
