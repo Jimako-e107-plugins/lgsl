@@ -45,11 +45,11 @@
   foreach ($server_list as $server)
   {
     $misc    = lgsl_server_misc($server);
-   // $server  = lgsl_server_html($server); FIX ME
+    $server  = lgsl_server_html($server, 0);  //it used as parameter for detail url, no wrap
     $percent = strval($server['s']['players'] == 0 || $server['s']['playersmax'] == 0 ? 0 : floor($server['s']['players']/$server['s']['playersmax']*100));
     $lastupd = Date($lgsl_config['text']['tzn'], (int)$server['s']['cache_time']);
     $gamelink= lgsl_build_link_params($uri, array("game" => $server['s']['game']));
-
+ 
     $output .= "
     <tr class='server_{$misc['text_status']}'>
 
@@ -91,14 +91,14 @@
       </td>
 
       <td class='details_cell'>";
- 
+
       if ($lgsl_config['locations']) {
         $output .= "
         <a href='".lgsl_location_link($server['o']['location'])."' target='_blank' class='contry_link'>
           <img alt='{$misc['text_location']}' src='{$misc['icon_location']}' title='{$misc['text_location']}' class='contry_icon'>
         </a>";
       }
- 
+
       $output .= "
         <a href='".lgsl_link($server['b']['ip'], $server['b']['c_port'])."' class='details_icon' title='{$lgsl_config['text']['vsd']}'></a>
       </td>
@@ -141,4 +141,5 @@
 //------ WANNA BE HERE? https://github.com/tltneon/lgsl/wiki/Who-uses-LGSL -> LET CREDITS STAY :P --------------------------------------------------------------------------------------------------+
   $output .= "<div style='text-align:center; font-family:tahoma; font-size:9px; padding: 33px 0 11px 0;'><a href='https://github.com/tltneon/lgsl' style='text-decoration:none'>".lgsl_version()."</a></div>";
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
- 
+if ($lgsl_config['preloader'])
+  echo $output;

@@ -25,8 +25,7 @@
     switch($lgsl_config['cms'])
     {
       case "e107":
-        $lgsl_url_path =  e_PLUGIN_ABS . "lgsl/{$index}"; 
-
+  
         $link = $s ? (
           $p ?
           "{$lgsl_url_path}?ip={$s}&port={$p}" :
@@ -450,7 +449,7 @@
 
   function lgsl_icon_game($type, $game)
   {
-    global $lgsl_file_path, $lgsl_url_path;
+    global $lgsl_file_path,  $lgsl_config, $lgsl_url_path;
 
     $type = preg_replace("/[^a-z0-9_]/", "_", strtolower($type));
     $game = preg_replace("/[^a-z0-9_]/", "_", strtolower($game));
@@ -461,12 +460,21 @@
     "icons/{$type}/{$type}.gif",
     "icons/{$type}/{$type}.png");
 
+    switch ($lgsl_config['cms'])
+    {
+      case "e107":
+        $lgsl_image_path = e_PLUGIN_ABS . "lgsl/lgsl_files/";
+      break;
+      default:
+        $lgsl_image_path = $lgsl_url_path;
+    }    
+  
     foreach ($path_list as $path)
     {
-      if (file_exists($lgsl_file_path.$path)) { return $lgsl_url_path.$path; }
+      if (file_exists($lgsl_file_path.$path)) { return $lgsl_image_path.$path; }
     }
 
-    return "{$lgsl_url_path}other/icon_unknown.gif";
+    return "{$lgsl_image_path}other/icon_unknown.gif";
   }
 
 //------------------------------------------------------------------------------------------------------------+
@@ -960,6 +968,7 @@ function lgsl_lang($code) { // FOR PREVENTING WARNINGS
 
     $lgsl_path = str_replace("\\", "/", $lgsl_path);
 
+  //  $lgsl_path =  e_PLUGIN_ABS . "lgsl/lgsl_files/"; 
     return $lgsl_path;
   }
 

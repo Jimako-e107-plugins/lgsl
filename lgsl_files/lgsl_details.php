@@ -39,7 +39,7 @@
     $server = lgsl_sort_players($server);
     $server = lgsl_sort_extras($server);
     $misc   = lgsl_server_misc($server);
- //   $server = lgsl_server_html($server);
+    $server = lgsl_server_html($server, 0);
 
   //------------------------------------------------------------------------------------------------------------+
 

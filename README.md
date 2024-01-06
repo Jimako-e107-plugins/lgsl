@@ -29,8 +29,9 @@ I am not a player, so this is unknown territory for me.
 
 - unlimited zones and unlimites menu areas
 
+## 6.2.1 version
 
-### Limitation
-
-You can't use e107 inside original files because file userbar.php (generating userbar), so SEF-URL is not possible for detail page. For now.  
-
+- fixed detail and userbar for SEF-URL versiona
+- rewritten admin part for easier settings
+- updated core lgsl 6.2.1
+- still PHP 7.4 

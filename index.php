@@ -24,7 +24,6 @@ if (!defined('e107_INIT'))
 
 require("lgsl_files/lgsl_config.php");
 
-
 if ($lgsl_prefs['style'])
 {
   e107::css('lgsl', 'lgsl_files/styles/' . $lgsl_prefs['style']);
@@ -40,12 +39,7 @@ if (isset($lgsl_config['scripts']))
 }
 
 
-//in lgsl_config you can use e107 stuff because usebar.php 
-$lgsl_prefs['zone_grid'] = e107::unserialize($lgsl_prefs['zone_grid']);
-$lgsl_prefs['zone_players'] = e107::unserialize($lgsl_prefs['zone_players']);
-$lgsl_prefs['zone_random'] = e107::unserialize($lgsl_prefs['zone_random']);
-$lgsl_prefs['zone_hide_offline'] = e107::unserialize($lgsl_prefs['zone_hide_offline']);
-$lgsl_prefs['zone_title'] = e107::unserialize($lgsl_prefs['zone_title']);
+
 
 /* examples for theme customization
   $detail_icon = "<i class=\'fa fa-search\'></fa>";
@@ -106,6 +100,9 @@ $s = isset($_GET['s']) ? $_GET['s'] : null;
 $ip = isset($_GET['ip']) ? $_GET['ip'] : null;
 $port = isset($_GET['port']) ? $_GET['port'] : null;
 
+
+$ns->tablerender($lgsl_config['title'][0], "", 'lgsl-title');
+
  
 if (is_numeric($s))
 {
@@ -122,7 +119,11 @@ else
 }
 $output .= "</div>";
 
-$ns->tablerender($lgsl_config['title'][0], $output);
+if (!$lgsl_config['preloader'])
+{
+  $ns->tablerender("", $output, 'lgsl-content' );
+}
+
 
 unset($output);
 

@@ -23,6 +23,9 @@ if (!e107::getUser()->checkPluginAdminPerms('lgsl'))
 	exit;
 }
 
+define("LGSL_ADMIN", "1");
+require "lgsl_files/lgsl_class.php";
+
 e107::lan('lgsl', true);
 
 class lgsl_adminArea extends e_admin_dispatcher
@@ -409,10 +412,6 @@ class lgsl_ui extends e_admin_ui
 	public function customPage()
 	{
  
-
-		define("LGSL_ADMIN", "1");
- 
-
 		$output = "<div class='lgsl table-responsive'>";
 		require "lgsl_files/lgsl_admin.php";
 		$output .= "</div>";
@@ -425,94 +424,25 @@ class lgsl_ui extends e_admin_ui
 
 		$output = "<div class='lgsl table-responsive'>";
 		$output .= 'SITEURL: <pre>' . SITEURL . '</pre>';
-		$link = e107::url('lgsl', 'index');
+		$link = e107::url('lgsl', 'index', array(), ['mode'=>'full']);
 		$output .= 'SEF URL (you can change alias/name in URL configuration): <pre>' . $link . '</pre>';
 		$link = e_PLUGIN . "lgsl/index.php";
 		$output .= 'LEGACY URLs  : <pre>' . $link . '</pre>';
 		$link = e_PLUGIN_ABS . "lgsl/index.php";
 		$output .= 'LEGACY URLs  : <pre>' . $link . '</pre>';
-		$link = e107::url('lgsl', 'detail', array('query_path' => '?s=1'));
-		$output .= 'SEF URL DETAIL s=1: <pre>' . $link . '</pre>';
+	/*	$link = e107::url('lgsl', 'detail', array('query_path' => '?s=1'));
+		$output .= 'SEF URL DETAIL s=1: <pre>' . $link . '</pre>';*/
 		$link = e_PLUGIN . "lgsl/index.php?s=1";
 		$output .= 'LEGACY URLs  : <pre>' . $link . '</pre>';
 
-		//result of lgsl_url_path()
-		$link = $this->lgsl_url_path();
-		$output .= 'LGSL URL PATH (simulated) : <pre>' . $link . '</pre>';
+		$link =  lgsl_url_path();
+		$output .= 'LGSL URL PATH  (path to core lgsl files): <pre>' . $link . '</pre>';
 		$output .= "</div>";
+ 
 		e107::getRender()->tablerender('', $output);
 		$output = "";
 	}
-
-	//simulation, check lgsl_class.php
-	public function lgsl_url_path()
-	{
-		// CHECK IF PATH HAS BEEN SET IN CONFIG
-
-		$lgsl_config = e107::pref('lgsl');
-
-		if ($lgsl_config['url_path'])
-		{
-			return $lgsl_config['url_path'];
-		}
-
-		// USE FULL DOMAIN PATH TO AVOID ALIAS PROBLEMS
-
-		$host_path = (!isset($SERVER['HTTPS']) || strtolower($SERVER['HTTPS']) != "on") ? "http://" : "https://";
-		$host_path .= $SERVER['HTTP_HOST'];
-
-		// GET FULL PATHS ( EXTRA CODE FOR WINDOWS AND IIS - NO DOCUMENT_ROOT - BACKSLASHES - DOUBLESLASHES - ETC )
-
-		if ($SERVER['DOCUMENT_ROOT'])
-		{
-			$base_path = $this->lgsl_realpath($SERVER['DOCUMENT_ROOT']);
-			$base_path = str_replace("\\", "/", $base_path);
-			$base_path = str_replace("//", "/", $base_path);
-		}
-		else
-		{
-			$file_path = $SERVER['SCRIPT_NAME'];
-			$file_path = str_replace("\\", "/", $file_path);
-			$file_path = str_replace("//", "/", $file_path);
-
-			$base_path = $SERVER['PATH_TRANSLATED'];
-			$base_path = str_replace("\\", "/", $base_path);
-			$base_path = str_replace("//", "/", $base_path);
-			$base_path = substr($base_path, 0, -strlen($file_path));
-		}
-
-		$lgsl_path = dirname($this->lgsl_realpath(__FILE__));
-		$lgsl_path = str_replace("\\", "/", $lgsl_path);
-
-		// REMOVE ANY TRAILING SLASHES
-
-		if (substr($base_path, -1) == "/")
-		{
-			$base_path = substr($base_path, 0, -1);
-		}
-		if (substr($lgsl_path, -1) == "/")
-		{
-			$lgsl_path = substr($lgsl_path, 0, -1);
-		}
-
-		// USE THE DIFFERENCE BETWEEN PATHS
-
-		if (substr($lgsl_path, 0, strlen($base_path)) == $base_path)
-		{
-			$url_path = substr($lgsl_path, strlen($base_path));
-
-			return $host_path . $url_path . "/";
-		}
-
-		return "/#LGSL_PATH_PROBLEM#{$base_path}#{$lgsl_path}#/";
-	}
-
-	public function lgsl_realpath($path)
-	{
-		// WRAPPER SO IT CAN BE DISABLED
-		global $lgsl_config;
-		return $lgsl_config['no_realpath'] ? $path : realpath($path);
-	}
+  
 }
 
 
@@ -798,21 +728,35 @@ class lgsl_zone_hosting_ui extends lgsl_ui
 	protected $prefs = array(
 
 		'direct_index' => array(
-			'title' => 'Direct index ', 'tab' => 8, 'type' => 'boolean',
-			'writeParms' => array('default' => 1), 'data' => 'integer', 'help' => '1/ON =link to index.php instead of the folder '
+			'title' => 'Direct index',   
+			'type' => 'boolean',
+			'writeParms' => array('default' => 0),
+			'data' => 'integer', 
+			'help' => '1/ON =link to index.php instead of the folder '
 		),
 
 		'no_realpath' => array(
-			'title' => 'No realpath', 'tab' => 8, 'type' => 'boolean',
-			'writeParms' => array('default' => 0), 'data' => 'integer', 'help' => '1/ON = do not use the realpath function '
+			'title' => 'No realpath',  
+			'type' => 'boolean',
+			'writeParms' => array('default' => 0), 
+			'data' => 'integer', 
+			'help' => '1/ON = do not use the realpath function '
 		),
 
 		'url_path' => array(
-			'title' => 'No realpath', 'tab' => 8, 'type' => 'text',
+			'title' => 'No realpath',  'type' => 'text',
 			'writeParms' => array('default' => '', 'size' => 'block-level'), 'data' => 'string', 'help' => ' full url to /lgsl_files/ for when auto detection fails '
 		),
 	);
+
+	function init()
+	{
+		$mes = "If you use SEF-URL version, set direct index off and!";
+
+	}
 }
+
+ 
 
 class lgsl_form_ui extends e_admin_form_ui
 {

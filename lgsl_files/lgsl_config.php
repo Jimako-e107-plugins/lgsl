@@ -5,7 +5,13 @@
 
   global $lgsl_config; $lgsl_config = array();
   $lgsl_prefs = e107::pref('lgsl');
- 
+//in lgsl_config you can use e107 stuff because usebar.php 
+$lgsl_prefs['zone_grid'] = e107::unserialize($lgsl_prefs['zone_grid']);
+$lgsl_prefs['zone_players'] = e107::unserialize($lgsl_prefs['zone_players']);
+$lgsl_prefs['zone_random'] = e107::unserialize($lgsl_prefs['zone_random']);
+$lgsl_prefs['zone_hide_offline'] = e107::unserialize($lgsl_prefs['zone_hide_offline']);
+$lgsl_prefs['zone_title'] = e107::unserialize($lgsl_prefs['zone_title']);
+
 //------------------------------------------------------------------------------------------------------------+
 //[ FEED: 0=OFF 1=CURL OR FSOCKOPEN 2=FSOCKOPEN ONLY / LEAVE THE URL ALONE UNLESS YOU KNOW WHAT YOUR DOING ]
 

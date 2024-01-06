@@ -22,7 +22,14 @@ class lgsl_url // plugin-folder + '_url'
 	function config() 
 	{
 		$config = array();
- 
+
+		$config['userbar'] = array(
+			'alias'         => 'LGSL',
+			'regex'			=> '^{alias}/userbar.php\?(.*)$',
+			'sef'			=> '{alias}/userbar.php{query_path}',
+			'redirect'		=> '{e_PLUGIN}lgsl/userbar.php?$1',
+		);
+
 		$config['detail'] = array(
 			'alias'         => 'LGSL',                         
 			'regex'			=> '^{alias}/\?(.*)$',				 
