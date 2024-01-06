@@ -120,7 +120,7 @@ $lgsl_config['url_path']     = varset($lgsl_prefs['url_path'], "");   // full ur
 //------------------------------------------------------------------------------------------------------------+
 //[ ADVANCED SETTINGS ]
 
-  $lgsl_config['management']    = varset($lgsl_prefs['image_mod'], 0);         // 1=show advanced management in the admin by default
+  $lgsl_config['management']    = varset($lgsl_prefs['management'], 0);         // 1=show advanced management in the admin by default
   $lgsl_config['host_to_ip']    = varset($lgsl_prefs['host_to_ip'], 0);         // 1=show the servers ip instead of its hostname
   $lgsl_config['public_add']    = 0;         // 1=servers require approval OR 2=servers shown instantly
   $lgsl_config['public_feed']   = 0;         // 1=feed requests can add new servers to your list
@@ -136,7 +136,7 @@ $lgsl_config['url_path']     = varset($lgsl_prefs['url_path'], "");   // full ur
  
   $lgsl_config['pagination_mod']= true;      // true=using pagination
   $lgsl_config['pagination_lim']= 15;        // limit per page
-  $lgsl_config['preloader']     = true;      // true=using ajax to faster loading page
+  $lgsl_config['preloader']     = false;      // FALSE to avoid echo output in original lgsl files 
   $lgsl_config['disabled_types']= false;     // allow to exclude some protocols (games) from list. usage: $lgsl_config['disabled_types']= array('warsowold', 'halflifewon', 'test');
 
 //------------------------------------------------------------------------------------------------------------+
