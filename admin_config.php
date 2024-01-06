@@ -16,14 +16,14 @@
  */
 
 require_once '../../class2.php';
- 
+
 if (!e107::getUser()->checkPluginAdminPerms('lgsl'))
 {
 	e107::redirect('admin');
 	exit;
 }
 
-e107::lan('lgsl',true);
+e107::lan('lgsl', true);
 
 class lgsl_adminArea extends e_admin_dispatcher
 {
@@ -44,6 +44,55 @@ class lgsl_adminArea extends e_admin_dispatcher
 			'uipath' => null,
 		),
 
+		'settings_advanced' => array(
+			'controller' => 'lgsl_advanced_ui',
+			'path' => null,
+			'ui' => 'lgsl_form_ui',
+			'uipath' => null,
+		),
+		'zone_sizing' => array(
+			'controller' => 'lgsl_zone_sizing_ui',
+			'path' => null,
+			'ui' => 'lgsl_form_ui',
+			'uipath' => null,
+		),
+		'zone_players' => array(
+			'controller' => 'lgsl_zone_players_ui',
+			'path' => null,
+			'ui' => 'lgsl_form_ui',
+			'uipath' => null,
+		),
+
+		'zone_grid' => array(
+			'controller' => 'lgsl_zone_grid_ui',
+			'path' => null,
+			'ui' => 'lgsl_form_ui',
+			'uipath' => null,
+		),
+		'zone_random' => array(
+			'controller' => 'lgsl_zone_random_ui',
+			'path' => null,
+			'ui' => 'lgsl_form_ui',
+			'uipath' => null,
+		),
+		'zone_offline' => array(
+			'controller' => 'lgsl_zone_offline_ui',
+			'path' => null,
+			'ui' => 'lgsl_form_ui',
+			'uipath' => null,
+		),
+		'zone_titles' => array(
+			'controller' => 'lgsl_zone_tiles_ui',
+			'path' => null,
+			'ui' => 'lgsl_form_ui',
+			'uipath' => null,
+		),
+		'zone_hosting' => array(
+			'controller' => 'lgsl_zone_hosting_ui',
+			'path' => null,
+			'ui' => 'lgsl_form_ui',
+			'uipath' => null,
+		)
 	);
 
 	protected $adminMenu = array(
@@ -51,10 +100,19 @@ class lgsl_adminArea extends e_admin_dispatcher
 		//	'main/list'			=> array('caption'=> LAN_MANAGE, 'perm' => 'P'),
 
 		//
- 		'main/custom' => array('caption' => 'Live Game Server List', 'perm' => 'P'),
-		'main/prefs' => array('caption' => 'Settings', 'perm' => '0'),
+		'main/custom' => array('caption' => 'Live Game Server List', 'perm' => 'P'),
+ 
 		'main/div0'      => array('divider' => true),
 		'settings_general/prefs' => array('caption' => LAN_LGSL_GENERAL_SETTINGS, 'perm' => '0'),
+		'settings_advanced/prefs' => array('caption' => LAN_LGSL_ADVANCED_SETTINGS, 'perm' => '0'),
+		'zone_sizing/prefs' => array('caption' => LAN_LGSL_ZONE_SIZING, 'perm' => '0'),
+		'zone_grid/prefs' => array('caption' => LAN_LGSL_ZONE_GRID, 'perm' => '0'),
+		'zone_players/prefs' => array('caption' => LAN_LGSL_ZONE_PLAYERS, 'perm' => '0'),
+		'zone_random/prefs' => array('caption' => LAN_LGSL_ZONE_RANDOM, 'perm' => '0'),
+		'zone_offline/prefs' => array('caption' => LAN_LGSL_ZONE_OFFLINE, 'perm' => '0'),
+		'zone_titles/prefs' => array('caption' => LAN_LGSL_ZONE_TILES, 'perm' => '0'),
+		'zone_hosting/prefs' => array('caption' => LAN_LGSL_HOSTING_FIXES, 'perm' => '0'),
+		'main/div1'      => array('divider' => true),
 		'main/links' => array('caption' => 'URL links', 'perm' => 'P'),
 
 	);
@@ -69,78 +127,8 @@ class lgsl_adminArea extends e_admin_dispatcher
 class lgsl_ui extends e_admin_ui
 {
 
-	protected $pluginTitle = 'LGSL';
+	protected $pluginTitle = LAN_LGSL_PLUGIN_TITLE;
 	protected $pluginName = 'lgsl';
-	protected $preftabs = array( '1'=>'[ ADVANCED SETTINGS ] ', '2' => '[ ZONE SIZING ]', '3' => '[ ZONE GRID ]', 
-	'4' => '[ ZONE PLAYERS]', '5' => '[ ZONE RANDOM ]', '6' => '[ ZONE OFFLINE]', '7' => '[ ZONE TIILES]', '8' =>  '[ HOSTING FIXES ]');
-
-	protected $prefs = array(
-
-  
-		'management' => array('title' => 'Advanced management by default', 'tab' => 1, 'type' => 'boolean', 'data' => 'integer', 'help' => '[ 1/ON =show advanced management in the admin by default ]'), 'writeParms' => array('default' => 0),
-		'host_to_ip' => array('title' => 'Show server IP', 'tab' => 1, 'type' => 'boolean', 'data' => 'integer', 'help' => '[ 1/ON =show the servers ip instead of its hostname ]'), 'writeParms' => array('default' => 0),
-		'timeout' => array('title' => 'Timeout', 'tab' => 1, 'type' => 'boolean', 'data' => 'integer', 'help' => '[ 1/ON =gives more time for servers to respond but adds loading delay ]'), 'writeParms' => array('default' => 0),
-		'retry_offline' => array('title' => 'Retry Offline', 'tab' => 1, 'type' => 'boolean', 'data' => 'integer', 'help' => '[ 1/ON = repeats query when there is no response but adds loading delay ]'), 'writeParms' => array('default' => 0),
-
-		'cache_time' => array('title' => 'Cache Time', 'tab' => 1, 'type' => 'number',
-			'writeParms' => array('default' => '60'), 'data' => 'integer', 'help' => ' seconds=time before a server needs updating '),
-
-		'live_time' => array('title' => 'Live Time', 'tab' => 1, 'type' => 'number',
-			'writeParms' => array('default' => '3'), 'data' => 'integer', 'help' => ' seconds=time allowed for updating servers per page load'),
-
-		'zone_width' => array('title' => 'Zone Width', 'tab' => 2, 'type' => 'number', 'data' => 'integer',
-			'writeParms' => array('default' => '160'),
-			'help' => 'in pixels -  images will be cropped unless also resized to match'),
-
-		'zone_line_size' => array('title' => 'Zone Line Size', 'tab' => 2, 'type' => 'number',
-			'writeParms' => array('default' => '19'), 'data' => 'integer', 'help' => 'in pixels - player box height is this number multiplied by player names '),
-
-		'zone_height' => array('title' => 'Zone Height', 'tab' => 2, 'type' => 'number', 'data' => 'integer',
-			'writeParms' => array('default' => '100'), 'help' => 'in pixels -  player box height limit'),
-
-		'zone_numbers' => array('title' => 'Zone Numbers', 'tab' => 2, 'type' => 'number',
-			'writeParms' => array('default' => '8'), 'data' => 'integer', 'help' => 'Change, save, then edit other settings'),
-
-		'zone_grid' => array('title' => "ZONE GRID ",
-			'tab' => 3, 'help' => 'ZONE GRID: NUMBER=WIDTH OF GRID - INCREASE FOR HORIZONTAL ZONE STACKING',
-			'type' => 'method', 'data' => 'json',
-			'writeParms' => array(),
-		),
-
-		'zone_players' => array('title' => "Show Player names ",
-			'tab' => 4, 'help' => 'ZONE SHOWS PLAYER NAMES: 0/OFF=HIDE 1/ON=SHOW',
-			'type' => 'method', 'data' => 'json',
-			'writeParms' => array(),
-		),
-
-		'zone_random' => array('title' => "MAX RANDOM SERVERS ",
-			'tab' => 5, 'help' => 'ZONE RANDOMISATION: NUMBER=MAX RANDOM SERVERS TO BE SHOWN',
-			'type' => 'method', 'data' => 'json',
-			'writeParms' => array(),
-		),
-
-		'zone_hide_offline' => array('title' => "HIDE OFFLINE SERVERS ",
-			'tab' => 6, 'help' => ' HIDE OFFLINE SERVERS: 0/OFF=HIDE 1/ON=SHOW',
-			'type' => 'method', 'data' => 'json',
-			'writeParms' => array(),
-		),
-
-		'zone_title' => array('title' => "List View Title + Zone titles ",
-			'tab' => 7, 'help' => 'Titles inside zone used for caption too (depends on theme) . Caption can be changed in menu manager.',
-			'type' => 'method', 'data' => 'json',
-			'writeParms' => array(),
-		),
-
-		'direct_index' => array('title' => 'Direct index ', 'tab' => 8, 'type' => 'boolean',
-			'writeParms' => array('default' => 1), 'data' => 'integer', 'help' => '1/ON =link to index.php instead of the folder '),
-
-		'no_realpath' => array('title' => 'No realpath', 'tab' => 8, 'type' => 'boolean',
-			'writeParms' => array('default' => 0), 'data' => 'integer', 'help' => '1/ON = do not use the realpath function '),
-
-		'url_path' => array('title' => 'No realpath', 'tab' => 8, 'type' => 'text',
-			'writeParms' => array('default' => '', 'size' => 'block-level'), 'data' => 'string', 'help' => ' full url to /lgsl_files/ for when auto detection fails '),
-
-	);
 
 	public function init()
 	{
@@ -402,224 +390,7 @@ class lgsl_ui extends e_admin_ui
 			return '';
 		}
 		$text =
-		'<ul class="list-unstyled text-center">
-			<li><b>LGSL</b></li>
-			<li><a href="https://github.com/tltneon/lgsl">[ LGSL GITHUB ]</a></li>
-			<li><a target="_blank" href="https://github.com/tltneon/lgsl/wiki">[ LGSL ONLINE WIKI ]</a></li>
-			<li><b>e107 LGSL Plugin</b></li>
-			<li>Live Game Server List for e107</li>
-			<li><a href="https://www.e107sk.com/">[ e107 SUPPORT ]</a></li>
-
-			<li class="text-center">
-				<p><small>Thank you</small>'.e107::getParser()->toGlyph('fa-smile-o').'</p>
-			</li>
-		</ul> ';
-
-		return array('caption' => "e107 LGSL plugin", 'text' => $text);
-	}
-
-	public function customPage()
-	{
-		define("LGSL_ADMIN", "1");
-		$output = "<div class='lgsl table-responsive'>";
-		require "lgsl_files/lgsl_admin.php";
-		$output .= "</div>";
-		e107::getRender()->tablerender('', $output);
-		$output = "";
-
-	}
-
-	public function linksPage()
-	{
-
-		$output = "<div class='lgsl table-responsive'>";
-		$output .= 'SITEURL: <pre>' . SITEURL . '</pre>';
-		$link = e107::url('lgsl', 'index');
-		$output .= 'SEF URL (you can change alias/name in URL configuration): <pre>' . $link . '</pre>';
-		$link = e_PLUGIN . "lgsl/index.php";
-		$output .= 'LEGACY URLs  : <pre>' . $link . '</pre>';
-		$link = e_PLUGIN_ABS . "lgsl/index.php";
-		$output .= 'LEGACY URLs  : <pre>' . $link . '</pre>';
-		$link = e107::url('lgsl', 'detail', array('query_path' => '?s=1'));
-		$output .= 'SEF URL DETAIL s=1: <pre>' . $link . '</pre>';
-		$link = e_PLUGIN . "lgsl/index.php?s=1";
-		$output .= 'LEGACY URLs  : <pre>' . $link . '</pre>';
-		
-		//result of lgsl_url_path()
-		$link = $this->lgsl_url_path();
-		$output .= 'LGSL URL PATH (simulated) : <pre>' . $link . '</pre>';
-		$output .= "</div>";
-		e107::getRender()->tablerender('', $output);
-		$output = "";
-
-	}
-
-	//simulation, check lgsl_class.php
-	public function lgsl_url_path()
-	{
-		// CHECK IF PATH HAS BEEN SET IN CONFIG
-
-		$lgsl_config = e107::pref('lgsl');
-
-		if ($lgsl_config['url_path'])
-		{
-			return $lgsl_config['url_path'];
-		}
-
-		// USE FULL DOMAIN PATH TO AVOID ALIAS PROBLEMS
-
-		$host_path = (!isset($SERVER['HTTPS']) || strtolower($SERVER['HTTPS']) != "on") ? "http://" : "https://";
-		$host_path .= $SERVER['HTTP_HOST'];
-
-		// GET FULL PATHS ( EXTRA CODE FOR WINDOWS AND IIS - NO DOCUMENT_ROOT - BACKSLASHES - DOUBLESLASHES - ETC )
-
-		if ($SERVER['DOCUMENT_ROOT'])
-		{
-			$base_path = $this->lgsl_realpath($SERVER['DOCUMENT_ROOT']);
-			$base_path = str_replace("\\", "/", $base_path);
-			$base_path = str_replace("//", "/", $base_path);
-		}
-		else
-		{
-			$file_path = $SERVER['SCRIPT_NAME'];
-			$file_path = str_replace("\\", "/", $file_path);
-			$file_path = str_replace("//", "/", $file_path);
-
-			$base_path = $SERVER['PATH_TRANSLATED'];
-			$base_path = str_replace("\\", "/", $base_path);
-			$base_path = str_replace("//", "/", $base_path);
-			$base_path = substr($base_path, 0, -strlen($file_path));
-		}
-
-		$lgsl_path = dirname($this->lgsl_realpath(__FILE__));
-		$lgsl_path = str_replace("\\", "/", $lgsl_path);
-
-		// REMOVE ANY TRAILING SLASHES
-
-		if (substr($base_path, -1) == "/")
-		{
-			$base_path = substr($base_path, 0, -1);}
-		if (substr($lgsl_path, -1) == "/")
-		{
-			$lgsl_path = substr($lgsl_path, 0, -1);}
-
-		// USE THE DIFFERENCE BETWEEN PATHS
-
-		if (substr($lgsl_path, 0, strlen($base_path)) == $base_path)
-		{
-			$url_path = substr($lgsl_path, strlen($base_path));
-
-			return $host_path . $url_path . "/";
-		}
-
-		return "/#LGSL_PATH_PROBLEM#{$base_path}#{$lgsl_path}#/";
-	}
-
-	public function lgsl_realpath($path)
-	{
-		// WRAPPER SO IT CAN BE DISABLED
-		global $lgsl_config;
-		return $lgsl_config['no_realpath'] ? $path : realpath($path);
-	}
-}
-
-class lgsl_general_ui extends lgsl_ui
-{
-
-	protected $pluginTitle = 'LGSL';
-	protected $pluginName = 'lgsl';
-	protected $preftabs = array();
-
-	protected $prefs = array(
-
-		'feed_method' => array(
-			'title' => 'Feed method', 'tab' => 0, 'type' => 'dropdown', 'data' => 'str',
-			'writeParms' => array('optArray' => array(
-				'0' => 'OFF',
-				'1' => 'CURL OR FSOCKOPEN',
-				'2' => 'FSOCKOPEN ONLY' 
-			))
-		),
-		
-		'feed_url' => array('title' => 'Feed URL', 'type' => 'url', 'data' => 'str', 'tab' => 0,
-			'writeParms' => array('size'=> 'block-level'), 'help' => ''),
-
-
-		'style' => array(
-			'title' => 'Select Frontend  Style', 'tab' => 0, 'type' => 'dropdown', 'data' => 'str',
-			'writeParms' => array('optArray' => array(
-				'' => 'not use (let it fully on e107 theme )',
-				'breeze_style.css' => 'LGSL SA Breeze Style',
-				'darken_style.css' => 'LGSL SA Darken Style',
-				'classic_style.css' => 'LGSL SA Classic Style',
-				'ogp_style.css' => 'LGSL SA OGP Style',
-				'parallax_style.css' => 'LGSL SA Parallax Style',
-				'disc_ff_style.css' => 'LGSL SA Disc FF Style',
-				'wallpaper_style.css' => 'LGSL SA Wallpaper Style',
-				'material_style.css' => 'LGSL SA Material Style',
-
-			))
-		),
-
-		'locations' => array('title' => 'Display Locations', 'type' => 'dropdown', 'data' => 'str', 'tab' => 0, 'help' => '[ SHOW LOCATION FLAGS: 0=OFF 1=GEO-IP "GB"=MANUALLY SET COUNTRY CODE FOR SPEED ]'),
-
-		'scripts' => array(
-			'title' => 'Select scripts', 'tab' => 0, 'type' => 'checkboxes', 'data' => 'str',
-			'help' => '',
-			'writeParms' => array('optArray' => array(
-				'' => 'not used',
-				'parallax.js' => 'parallax (for Parallax Style)',
-				'preview.js' => 'map preview (on server list)',
-				'refresh.js' => 'refresh (manually refresh server status)',
-				'flag-icon (replacing with svg)' => 'flag-icon.js' 
-			),
-			'multiple'=> true)
-		),
-
-		'sort_servers_by' => array(
-			'title' => 'Sort Servers by', 'tab' => 0, 'type' => 'dropdown', 'data' => 'string', 'help' => '[ SORTING OPTIONS ]',
-			'writeParms' => array('optArray' => array(
-				'id' => 'ID',
-				'type' => 'Type',
-				'zone' => 'Zone',
-				'players' => 'Players',
-				'status' => 'Status'
-			))
-		),
-
-		'sort_players_by' => array(
-			'title' => 'Sort Players by', 'tab' => 0, 'type' => 'dropdown', 'data' => 'string', 'help' => '[ SORTING OPTIONS ]',
-			'writeParms' => array('optArray' => array(
-				'name' => 'Name',
-				'score' => 'Score',
-				'time' => 'Time'
-			))
-		),
-
-		'image_mod' => array('title' => 'Enable image mod', 'tab' => 0, 'type' => 'boolean', 'data' => 'integer', 'help' => '[ SHOW TOTAL SERVERS AND PLAYERS AT BOTTOM OF LIST: 0=OFF 1=ON ]'),
-
-		'list_totals' => array('title' => 'Display Totals', 'type' => 'boolean', 'data' => 'integer', 'tab' => 0, 'help' => '[ SHOW TOTAL SERVERS AND PLAYERS AT BOTTOM OF LIST: 0=OFF 1=ON ]'),
-
-
-		'bootstrap3_table' => array('title' => 'Activate boostrap 3 tables behaviour', 'tab' => 0, 'type' => 'boolean', 'data' => 'integer', 'help' => 'Makes responsive bootstrap3 table'),
-		'bootstrap3_imagefix' => array('title' => 'Use quick image fix', 'type' => 'boolean', 'tab' => 0, 'data' => 'integer', 'help' => 'Your theme should fix this too'),
-
-		 
-
-	);
-
- 
-
-	public function renderHelp()
-	{
-		$tp = e107::getParser();
-		$hide_help = e107::getPlugConfig('simplepage')->getPref('hide_help');
-		if ($hide_help)
-		{
-			return '';
-		}
-		$text =
-		'<ul class="list-unstyled text-center">
+			'<ul class="list-unstyled text-center">
 			<li><b>LGSL</b></li>
 			<li><a href="https://github.com/tltneon/lgsl">[ LGSL GITHUB ]</a></li>
 			<li><a target="_blank" href="https://github.com/tltneon/lgsl/wiki">[ LGSL ONLINE WIKI ]</a></li>
@@ -637,7 +408,11 @@ class lgsl_general_ui extends lgsl_ui
 
 	public function customPage()
 	{
+ 
+
 		define("LGSL_ADMIN", "1");
+ 
+
 		$output = "<div class='lgsl table-responsive'>";
 		require "lgsl_files/lgsl_admin.php";
 		$output .= "</div>";
@@ -740,6 +515,305 @@ class lgsl_general_ui extends lgsl_ui
 	}
 }
 
+
+
+class lgsl_general_ui extends lgsl_ui
+{
+
+	protected $pluginTitle = LAN_LGSL_PLUGIN_TITLE;
+	protected $pluginName = 'lgsl';
+	protected $preftabs = array();
+
+	protected $prefs = array(
+
+		'feed_method' => array(
+			'title' => 'Feed method', 'tab' => 0, 'type' => 'dropdown', 'data' => 'str',
+			'writeParms' => array('optArray' => array(
+				'0' => 'OFF',
+				'1' => 'CURL OR FSOCKOPEN',
+				'2' => 'FSOCKOPEN ONLY'
+			))
+		),
+
+		'feed_url' => array(
+			'title' => 'Feed URL', 'type' => 'url', 'data' => 'str', 'tab' => 0,
+			'writeParms' => array('size' => 'block-level'), 'help' => ''
+		),
+
+
+		'style' => array(
+			'title' => 'Select Frontend  Style', 'tab' => 0, 'type' => 'dropdown', 'data' => 'str',
+			'writeParms' => array('optArray' => array(
+				'' => 'not use (let it fully on e107 theme )',
+				'breeze_style.css' => 'LGSL SA Breeze Style',
+				'darken_style.css' => 'LGSL SA Darken Style',
+				'classic_style.css' => 'LGSL SA Classic Style',
+				'ogp_style.css' => 'LGSL SA OGP Style',
+				'parallax_style.css' => 'LGSL SA Parallax Style',
+				'disc_ff_style.css' => 'LGSL SA Disc FF Style',
+				'wallpaper_style.css' => 'LGSL SA Wallpaper Style',
+				'material_style.css' => 'LGSL SA Material Style',
+
+			))
+		),
+
+		'locations' => array('title' => 'Display Locations', 'type' => 'dropdown', 'data' => 'str', 'tab' => 0, 'help' => '[ SHOW LOCATION FLAGS: 0=OFF 1=GEO-IP "GB"=MANUALLY SET COUNTRY CODE FOR SPEED ]'),
+
+		'scripts' => array(
+			'title' => 'Select scripts', 'tab' => 0, 'type' => 'checkboxes', 'data' => 'str',
+			'help' => '',
+			'writeParms' => array(
+				'optArray' => array(
+					'' => 'not used',
+					'parallax.js' => 'parallax (for Parallax Style)',
+					'preview.js' => 'map preview (on server list)',
+					'refresh.js' => 'refresh (manually refresh server status)',
+					'flag-icon (replacing with svg)' => 'flag-icon.js'
+				),
+				'multiple' => true
+			)
+		),
+
+		'sort_servers_by' => array(
+			'title' => 'Sort Servers by', 'tab' => 0, 'type' => 'dropdown', 'data' => 'string', 'help' => '[ SORTING OPTIONS ]',
+			'writeParms' => array('optArray' => array(
+				'id' => 'ID',
+				'type' => 'Type',
+				'zone' => 'Zone',
+				'players' => 'Players',
+				'status' => 'Status'
+			))
+		),
+
+		'sort_players_by' => array(
+			'title' => 'Sort Players by', 'tab' => 0, 'type' => 'dropdown', 'data' => 'string', 'help' => '[ SORTING OPTIONS ]',
+			'writeParms' => array('optArray' => array(
+				'name' => 'Name',
+				'score' => 'Score',
+				'time' => 'Time'
+			))
+		),
+
+		'image_mod' => array('title' => 'Enable image mod', 'tab' => 0, 'type' => 'boolean', 'data' => 'integer', 'help' => '[ SHOW TOTAL SERVERS AND PLAYERS AT BOTTOM OF LIST: 0=OFF 1=ON ]'),
+
+		'list_totals' => array('title' => 'Display Totals', 'type' => 'boolean', 'data' => 'integer', 'tab' => 0, 'help' => '[ SHOW TOTAL SERVERS AND PLAYERS AT BOTTOM OF LIST: 0=OFF 1=ON ]'),
+
+
+		'bootstrap3_table' => array('title' => 'Activate boostrap 3 tables behaviour', 'tab' => 0, 'type' => 'boolean', 'data' => 'integer', 'help' => 'Makes responsive bootstrap3 table'),
+		'bootstrap3_imagefix' => array('title' => 'Use quick image fix', 'type' => 'boolean', 'tab' => 0, 'data' => 'integer', 'help' => 'Your theme should fix this too'),
+
+
+	);
+}
+
+class lgsl_advanced_ui extends lgsl_ui
+{
+
+	protected $pluginTitle = LAN_LGSL_PLUGIN_TITLE;
+	protected $pluginName = 'lgsl';
+	protected $preftabs = array();
+
+	protected $prefs = array(
+		'management' => array(
+			'title' => 'Advanced management by default',
+			'tab' => 0,
+			'type' => 'boolean',
+			'data' => 'integer',
+			'help' => '[ 1/ON =show advanced management in the admin by default ]',
+			'writeParms' => array('default' => 0),
+		),
+		'host_to_ip' => array(
+			'title' => 'Show server IP',
+			'tab' => 0,
+			'type' => 'boolean',
+			'data' => 'integer',
+			'help' => '[ 1/ON =show the servers ip instead of its hostname ]',
+			'writeParms' => array('default' => 0),
+		),
+		'timeout' => array(
+			'title' => 'Timeout',
+			'tab' => 0,
+			'type' => 'boolean',
+			'data' => 'integer',
+			'help' => '[ 1/ON =gives more time for servers to respond but adds loading delay ]',
+			'writeParms' => array('default' => 0),
+		),
+		'retry_offline' => array(
+			'title' => 'Retry Offline',
+			'tab' => 0,
+			'type' => 'boolean',
+			'data' => 'integer',
+			'help' => '[ 1/ON = repeats query when there is no response but adds loading delay ]',
+			'writeParms' => array('default' => 0),
+		),
+		'cache_time' => array(
+			'title' => 'Cache Time',
+			'tab' => 0,
+			'type' => 'number',
+			'writeParms' => array('default' => '60'),
+			'data' => 'integer',
+			'help' => ' seconds=time before a server needs updating '
+		),
+
+		'live_time' => array(
+			'title' => 'Live Time',
+			'tab' => 0,
+			'type' => 'number',
+			'writeParms' => array('default' => '3'),
+			'data' => 'integer',
+			'help' => ' seconds=time allowed for updating servers per page load'
+		),
+
+
+	);
+}
+
+class lgsl_zone_sizing_ui extends lgsl_ui
+{
+
+	protected $pluginTitle = LAN_LGSL_PLUGIN_TITLE;
+	protected $pluginName = 'lgsl';
+	protected $preftabs = array();
+
+	protected $prefs = array(
+		'zone_width' => array(
+			'title' => 'Zone Width',  'type' => 'number', 'data' => 'integer',
+			'writeParms' => array('default' => '160'),
+			'help' => 'in pixels -  images will be cropped unless also resized to match'
+		),
+
+		'zone_line_size' => array(
+			'title' => 'Zone Line Size',  'type' => 'number',
+			'writeParms' => array('default' => '19'), 'data' => 'integer', 'help' => 'in pixels - player box height is this number multiplied by player names '
+		),
+
+		'zone_height' => array(
+			'title' => 'Zone Height',  'type' => 'number', 'data' => 'integer',
+			'writeParms' => array('default' => '100'), 'help' => 'in pixels -  player box height limit'
+		),
+
+		'zone_numbers' => array(
+			'title' => 'Zone Numbers',  'type' => 'number',
+			'writeParms' => array('default' => '8'), 'data' => 'integer', 'help' => 'Change, save, then edit other settings'
+		),
+
+	);
+}
+
+class lgsl_zone_grid_ui extends lgsl_ui
+{
+
+	protected $pluginTitle = LAN_LGSL_PLUGIN_TITLE;
+	protected $pluginName = 'lgsl';
+	protected $preftabs = array();
+
+	protected $prefs = array(
+
+		'zone_grid' => array(
+			'title' => "ZONE GRID ",
+			'tab' => 3, 'help' => 'ZONE GRID: NUMBER=WIDTH OF GRID - INCREASE FOR HORIZONTAL ZONE STACKING',
+			'type' => 'method', 'data' => 'json',
+			'writeParms' => array(),
+		),
+
+	);
+}
+
+class lgsl_zone_players_ui extends lgsl_ui
+{
+
+	protected $pluginTitle = LAN_LGSL_PLUGIN_TITLE;
+	protected $pluginName = 'lgsl';
+	protected $preftabs = array();
+
+	protected $prefs = array(
+		'zone_players' => array(
+			'title' => "Show Player names ",
+			'tab' => 4, 'help' => 'ZONE SHOWS PLAYER NAMES: 0/OFF=HIDE 1/ON=SHOW',
+			'type' => 'method', 'data' => 'json',
+			'writeParms' => array(),
+		),
+	);
+}
+
+class lgsl_zone_random_ui extends lgsl_ui
+{
+
+	protected $pluginTitle = LAN_LGSL_PLUGIN_TITLE;
+	protected $pluginName = 'lgsl';
+	protected $preftabs = array();
+
+	protected $prefs = array(
+		'zone_random' => array(
+			'title' => "MAX RANDOM SERVERS ",
+			'tab' => 5, 'help' => 'ZONE RANDOMISATION: NUMBER=MAX RANDOM SERVERS TO BE SHOWN',
+			'type' => 'method', 'data' => 'json',
+			'writeParms' => array(),
+		),
+	);
+}
+
+class lgsl_zone_offline_ui extends lgsl_ui
+{
+
+	protected $pluginTitle = LAN_LGSL_PLUGIN_TITLE;
+	protected $pluginName = 'lgsl';
+	protected $preftabs = array();
+
+	protected $prefs = array(
+		'zone_hide_offline' => array(
+			'title' => "HIDE OFFLINE SERVERS ",
+			'tab' => 6, 'help' => ' HIDE OFFLINE SERVERS: 0/OFF=HIDE 1/ON=SHOW',
+			'type' => 'method', 'data' => 'json',
+			'writeParms' => array(),
+		),
+	);
+}
+
+class lgsl_zone_tiles_ui extends lgsl_ui
+{
+
+	protected $pluginTitle = LAN_LGSL_PLUGIN_TITLE;
+	protected $pluginName = 'lgsl';
+	protected $preftabs = array();
+
+	protected $prefs = array(
+		'zone_title' => array(
+			'title' => "List View Title + Zone titles ",
+			'tab' => 7, 'help' => 'Titles inside zone used for caption too (depends on theme) . Caption can be changed in menu manager.',
+			'type' => 'method', 'data' => 'json',
+			'writeParms' => array(),
+		),
+
+	);
+}
+
+class lgsl_zone_hosting_ui extends lgsl_ui
+{
+
+	protected $pluginTitle = LAN_LGSL_PLUGIN_TITLE;
+	protected $pluginName = 'lgsl';
+	protected $preftabs = array();
+
+	protected $prefs = array(
+
+		'direct_index' => array(
+			'title' => 'Direct index ', 'tab' => 8, 'type' => 'boolean',
+			'writeParms' => array('default' => 1), 'data' => 'integer', 'help' => '1/ON =link to index.php instead of the folder '
+		),
+
+		'no_realpath' => array(
+			'title' => 'No realpath', 'tab' => 8, 'type' => 'boolean',
+			'writeParms' => array('default' => 0), 'data' => 'integer', 'help' => '1/ON = do not use the realpath function '
+		),
+
+		'url_path' => array(
+			'title' => 'No realpath', 'tab' => 8, 'type' => 'text',
+			'writeParms' => array('default' => '', 'size' => 'block-level'), 'data' => 'string', 'help' => ' full url to /lgsl_files/ for when auto detection fails '
+		),
+	);
+}
+
 class lgsl_form_ui extends e_admin_form_ui
 {
 	public function zone_grid($curVal, $mode)
@@ -774,7 +848,6 @@ class lgsl_form_ui extends e_admin_form_ui
 		$text .= "</tbody></table>";
 
 		return $text;
-
 	}
 
 	public function zone_players($curVal, $mode)
@@ -842,7 +915,6 @@ class lgsl_form_ui extends e_admin_form_ui
 		$text .= "</tbody></table>";
 
 		return $text;
-
 	}
 
 	public function zone_hide_offline($curVal, $mode)
