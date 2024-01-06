@@ -141,5 +141,4 @@
 //------ WANNA BE HERE? https://github.com/tltneon/lgsl/wiki/Who-uses-LGSL -> LET CREDITS STAY :P --------------------------------------------------------------------------------------------------+
   $output .= "<div style='text-align:center; font-family:tahoma; font-size:9px; padding: 33px 0 11px 0;'><a href='https://github.com/tltneon/lgsl' style='text-decoration:none'>".lgsl_version()."</a></div>";
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-if ($lgsl_config['preloader'])
-  echo $output;
+ 
