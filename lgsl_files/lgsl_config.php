@@ -4,7 +4,9 @@
 //[ PREPARE CONFIG - DO NOT CHANGE OR MOVE THIS ]
 
   global $lgsl_config; $lgsl_config = array();
+ 
   $lgsl_prefs = e107::pref('lgsl');
+
 //in lgsl_config you can use e107 stuff because usebar.php 
 $lgsl_prefs['zone_grid'] = e107::unserialize($lgsl_prefs['zone_grid']);
 $lgsl_prefs['zone_players'] = e107::unserialize($lgsl_prefs['zone_players']);
@@ -20,10 +22,12 @@ $lgsl_prefs['zone_title'] = e107::unserialize($lgsl_prefs['zone_title']);
 
 //------------------------------------------------------------------------------------------------------------+
 //[ ADDITIONAL FILES ]
-  $tmp = array_keys($lgsl_prefs['scripts']);  
+  $tmp = '';
+  if(is_array($lgsl_prefs['scripts']))  $tmp = array_keys($lgsl_prefs['scripts']);  
+  
   $lgsl_config['style'] = varset(e107::pref('style'), "darken_style.css"); // options: breeze_style.css, darken_style.css, classic_style.css, ogp_style.css, parallax_style.css, disc_ff_style.css, material_style.css, cards_style.css
   $lgsl_config['scripts'] = $tmp;
-
+ 
 //------------------------------------------------------------------------------------------------------------+
 //[ SHOW LOCATION FLAGS: 0=OFF 1=GEO-IP "GB"=MANUALLY SET COUNTRY CODE FOR SPEED ]
 
