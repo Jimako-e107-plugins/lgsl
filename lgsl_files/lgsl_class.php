@@ -494,15 +494,15 @@
 
   function lgsl_icon_location($location)
   {
-    global $lgsl_config, $lgsl_file_path, $lgsl_url_path;
-
-    if (!$location || !$lgsl_config["locations"]) { return "{$lgsl_url_path}locations/OFF.png"; }
+    global $lgsl_config, $lgsl_file_path, $lgsl_url_path, $lgsl_image_path;
+ 
+    if (!$location || !$lgsl_config["locations"]) { return "{$lgsl_image_path}locations/OFF.png"; }
 
     if ($location)
     {
       $location = "locations/".strtoupper(preg_replace("/[^a-zA-Z0-9_]/", "_", $location)).".png";
 
-      if (file_exists($lgsl_file_path.$location)) { return $lgsl_url_path.$location; }
+      if (file_exists($lgsl_file_path.$location)) { return $lgsl_image_path.$location; }
     }
 
     return "{$lgsl_url_path}locations/XX.png";
@@ -1078,10 +1078,21 @@ function lgsl_lang($code) { // FOR PREVENTING WARNINGS
 //------------------------------------------------------------------------------------------------------------+
 //------------------------------------------------------------------------------------------------------------+
 
-  global $lgsl_file_path, $lgsl_url_path, $lgsl_config;
+  global $lgsl_file_path, $lgsl_url_path, $lgsl_config,  $lgsl_image_path;
 
   $lgsl_file_path = lgsl_file_path();
 
+  switch ($lgsl_config['cms'])
+  {
+    case "e107":
+      $lgsl_image_path = e_PLUGIN_ABS . "lgsl/lgsl_files/";
+      break;
+    default:
+      $lgsl_image_path = $lgsl_url_path;
+  }
+// print_a($lgsl_file_path);
+// print_a($lgsl_url_path);    
+// print_a($lgsl_image_path);
   require $lgsl_file_path."lgsl_config.php";
   require $lgsl_file_path."lgsl_protocol.php";
 
