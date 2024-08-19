@@ -449,7 +449,7 @@
 
   function lgsl_icon_game($type, $game)
   {
-    global $lgsl_file_path,  $lgsl_config, $lgsl_url_path;
+    global $lgsl_file_path,  $lgsl_config, $lgsl_url_path, $lgsl_image_path;
 
     $type = preg_replace("/[^a-z0-9_]/", "_", strtolower($type));
     $game = preg_replace("/[^a-z0-9_]/", "_", strtolower($game));
@@ -459,16 +459,7 @@
     "icons/{$type}/{$game}.png",
     "icons/{$type}/{$type}.gif",
     "icons/{$type}/{$type}.png");
-
-    switch ($lgsl_config['cms'])
-    {
-      case "e107":
-        $lgsl_image_path = e_PLUGIN_ABS . "lgsl/lgsl_files/";
-      break;
-      default:
-        $lgsl_image_path = $lgsl_url_path;
-    }    
-  
+ 
     foreach ($path_list as $path)
     {
       if (file_exists($lgsl_file_path.$path)) { return $lgsl_image_path.$path; }
@@ -512,7 +503,7 @@
 
   function lgsl_image_map($status, $type, $game, $map, $check_exists = TRUE, $id = 0)
   {
-    global $lgsl_file_path, $lgsl_url_path;
+    global $lgsl_file_path, $lgsl_url_path, $lgsl_image_path;
 
     $type = preg_replace("/[^a-z0-9_]/", "_", strtolower($type));
     $game = preg_replace("/[^a-z0-9_]/", "_", strtolower($game));
@@ -551,7 +542,7 @@
 
     foreach ($path_list as $path)
     {
-      if (file_exists($lgsl_file_path.$path)) { return "{$lgsl_url_path}{$path}"; }
+      if (file_exists($lgsl_file_path.$path)) { return "{$lgsl_image_path}{$path}"; }
     }
 
     return "#LGSL_DEFAULT_IMAGES_MISSING#";
