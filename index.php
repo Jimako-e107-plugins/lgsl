@@ -23,7 +23,7 @@ if (!defined('e107_INIT'))
 }
 
 require("lgsl_files/lgsl_config.php");
-
+ 
 if ($lgsl_prefs['style'])
 {
   e107::css('lgsl', 'lgsl_files/styles/' . $lgsl_prefs['style']);
@@ -94,7 +94,7 @@ require_once HEADERF;
 global $output, $lgsl_server_id;
 //------------------------------------------------------------------------------------------------------------+
 
-$output = '<div id="container" style="background-position:initial">';
+$start = '<div id="container" style="background-position:initial">';
 
 $s = isset($_GET['s']) ? $_GET['s'] : null;
 $ip = isset($_GET['ip']) ? $_GET['ip'] : null;
@@ -117,11 +117,11 @@ else
 {
   require "lgsl_files/lgsl_list.php";
 }
-$output .= "</div>";
-
+$end .= "</div>";
+$output = '';
 if (!$lgsl_config['preloader'])
 {
-  $ns->tablerender("", $output, 'lgsl-content' );
+  $ns->tablerender("", $start.$output.$end, 'lgsl-content' );
 }
 
 
